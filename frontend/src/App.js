@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react'
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import Block from './components/Block';
 import Header from './components/Header';
 import Home from './pages/Home';
 import Signin from './pages/Signin';
@@ -23,7 +22,6 @@ useEffect(() => {
   return (
     <BrowserRouter>
     <Header />
-    <Block />
     <Routes>
       <Route path="/" element={<Home />}/>
       <Route path="/signin" element={<Signin />}/>
