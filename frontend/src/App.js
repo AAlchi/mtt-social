@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect, useState} from 'react'
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import Block from './components/Block';
+import Header from './components/Header';
+import Home from './pages/Home';
+import Signin from './pages/Signin';
+import Signup from './pages/Signup';
 
 function App() {
+
+const [back, setBack] = useState([{}])
+
+useEffect(() => {
+  fetch("/api").then (
+    response => response.json()
+  ).then (
+    data => {
+      setBack(data)
+    }
+  )
+}, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+    <Header />
+    <Block />
+    <Routes>
+      <Route path="/" element={<Home />}/>
+      <Route path="/signin" element={<Signin />}/>
+      <Route path="/signup" element={<Signup />}/>
+    </Routes>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
