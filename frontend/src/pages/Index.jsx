@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './style.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import { faNavicon, faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { useLocation, useNavigate } from 'react-router-dom';
 
 
@@ -10,22 +10,52 @@ export default function Index() {
     const { search } = useLocation();
     const redirectInUrl = new URLSearchParams(search).get('redirect');
     const redirect = redirectInUrl ? redirectInUrl : '/';
+
+    const home = () => {
+        navigate('/');
+    }
+
+    const friends = () => {
+        navigate('/friends')
+    }
+  
+    const account = () => {
+        navigate('/account')
+    }
+  
+    const feed = () => {
+        navigate('/feed')
+    }
+  
+    const following = () => {
+        navigate('/following')
+    }
+  
+    const followers = () => {
+        navigate('/followers')
+    }
+  
+    const you = () => {
+        navigate('/you')
+    }
+  
   
   
   
     const navigate = useNavigate();
-  
+    const logout = () => {
+        localStorage.removeItem('USER')
+        navigate('/');
+    }
+
+    
   
     useEffect(() => {
-      if (userI) {
+      if (userI == null) {
         navigate(redirect);
       }
     }, [navigate, redirect, userI]);
   
-    const logout = () => {
-        localStorage.removeItem('USER')
-    }
-
     
     const phoneThing = () => {
         const side = document.getElementById('sidebar');
@@ -37,7 +67,13 @@ export default function Index() {
         }
     }
     return (
+        <>
+
+<div className="title">
+            <center><h1>MTT SOCIAL</h1></center>
+        </div>
     <div className='index'>
+      
         <div onClick={phoneThing} className="phone_thing">
         <div>
             <div></div>
@@ -48,13 +84,13 @@ export default function Index() {
         <div id="sidebar" className="sideBar">
             <ul>
                 <h2>Options</h2>
-                <li>Home</li>
-                <li>Freinds</li>
-                <li>Account</li>
-                <li>Feed</li>
-                <li>Following</li>
-                <li>Followers</li>
-                <li>Your Page</li>
+                <li onClick={home}>Home</li>
+                <li onClick={you}>Your Page</li>
+                <li onClick={feed}>Feed</li>
+                <li onClick={account}>Account</li>
+                <li onClick={friends}>Freinds</li>
+                <li onClick={following}>Following</li>
+                <li onClick={followers}>Followers</li>
                 <li onClick={logout}>Log Out</li>
             </ul>
         </div>
@@ -140,5 +176,6 @@ export default function Index() {
             </ul>
         </div>
     </div>
+    </>
   )
 }
