@@ -1,0 +1,326 @@
+.index {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.sideBar {
+    width: 200px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 30px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding-bottom: 5px;
+    background-color: #E1E1DF;
+}
+
+.posts {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.sideBar > ul {
+    width: 200px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.sideBar > ul > li {
+    list-style: none;
+    border-radius: 10px;
+    width: 90%;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+
+
+.rightBar {
+    width: 200px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 30px;
+    background-color: #E1E1DF;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding-bottom: 5px;
+}
+
+.imgPost {
+    width: 700px;
+    height: 350px;
+}
+
+.person {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.postButton {
+    width: 150px;
+    height: 50px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.card {
+    width: 700px;
+    height: 500px;
+    border: 1px solid black;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #E1E1DF;
+}
+
+.rightBar > ul {
+    width: 200px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.rightBar > ul > li {
+    list-style: none;
+    border-radius: 10px;
+    width: 90%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    cursor: pointer;
+}
+
+.phone_thing {
+    display: none;
+    width: 100%;
+    align-items: center;
+    justify-content: end;
+    height: 40px;
+    cursor: pointer;
+}
+
+.phone_thing > div {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.phone_thing > div > div {
+    display: flex;
+    width: 100px;
+    height: 10px;
+    gap: 5px;
+    background-color: black;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.post {
+    border: 1px solid black;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    height: 200px;
+    justify-content: space-evenly;
+    flex-direction: column;
+    padding-left: 20px;
+    border-radius: 20px;
+    background-color: #E1E1DF;
+}
+
+.input_post {
+    width: 90%;
+    height: 40px;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.button_post {
+    width: 90%;
+    border: none;
+    background-color: white;
+    height: 40px;
+    cursor: pointer;
+}
+
+
+@media (max-width: 1200px) {
+    .card {
+        width: 400px;
+        height: 300px;
+    }
+    .imgPost {
+        width: 400px;
+        height: 200px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .phone_thing {
+        display: flex;
+    }
+    .index {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .rightBar {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        padding-top: 30px;
+        background-color: #E1E1DF;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        padding-bottom: 5px;
+    }
+    .rightBar > ul {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .sideBar > ul {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .sideBar {
+        width: 100%;
+        height: 100%;
+        display: none;
+        align-items: center;
+        justify-content: space-evenly;
+        padding-top: 30px;
+        background-color: #E1E1DF;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        padding-bottom: 5px;
+    }
+
+    .posts {
+        align-items: center;
+        width: 100%;
+    }
+    .card {
+        width: 100%;
+        height: 400px;
+    }
+    .imgPost {
+        width: 100%;
+        height: 300px;
+    }
+}
+
+@media (max-width: 700px) {
+    .card {
+        width: 550px;
+        height: 400px;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-bottom: 10px;
+        padding-right: 10px;
+    }
+    .imgPost {
+        width: 550px;
+        height: 250px;
+        border-radius: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .card {
+        width: 450px;
+        height: 300px;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-bottom: 10px;
+        padding-right: 10px;
+    }
+    .imgPost {
+        width: 450px;
+        height: 150px;
+        border-radius: 20px;
+    }
+}
+
+@media (max-width: 700px) {
+    .card {
+        width: 350px;
+        height: 400px;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-bottom: 10px;
+        padding-right: 10px;
+    }
+    .imgPost {
+        width: 350px;
+        height: 150px;
+        border-radius: 20px;
+    }
+}
+
+@media (max-width: 400px) {
+    .card {
+        width: 300px;
+        height: 450px;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-bottom: 10px;
+        padding-right: 10px;
+    }
+    .imgPost {
+        width: 300px;
+        height: 250px;
+        border-radius: 20px;
+    }
+}
+
+@media (max-width: 340px) {
+    .card {
+        width: 250px;
+        height: 400px;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-bottom: 10px;
+        padding-right: 10px;
+    }
+    .imgPost {
+        width: 250px;
+        height: 200px;
+        border-radius: 20px;
+    }
+}
+

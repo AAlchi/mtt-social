@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import bcrypt from 'bcryptjs';
+import Header from '../components/Header';
 
 function Signup() {
   const [form, setForm] = useState({});
@@ -21,11 +22,27 @@ function Signup() {
     }
     return age;
   }
+  const { search } = useLocation();
+  const redirectInUrl = new URLSearchParams(search).get('redirect');
+  const redirect = redirectInUrl ? redirectInUrl : '/home';
+
+
+
+  const navigate = useNavigate();
+
+  const userI = JSON.parse(localStorage.getItem('USER'))
+
+  useEffect(() => {
+    if (userI) {
+      navigate(redirect);
+    }
+  }, [navigate, redirect, userI]);
+
  
   const handleSubmit = (e, errors) => {
     e.preventDefault();
     const {fName, lName, email, username, address, zipCode, dob, password} = form;
-    if (fName == null || lName == null || email == null || username == null || address == null || zipCode == null || dob == null || password == null) {
+    if (fName == null || lName == null || email == null || username == null || address == null || zipCode == null || dob == null || password == null || fName === '' || lName === '' || email === '' || username === '' || address === '' || zipCode === '' || dob === '' || password === '') {
       errors = "Empty Inputs";
     } else if (calcAge(dob) < 6 || calcAge(dob) > 100) {
       errors = "Wrong DOB or too young or too old"
@@ -46,7 +63,11 @@ function Signup() {
     document.getElementById('error').innerHTML = errors
   }
   return (
+    <>
+              <Header />
+
     <div className='signup'>
+
       <form className="signup_content">
         <h2>Sign Up</h2>
         <h6>Enter The Required Information</h6>
@@ -63,6 +84,7 @@ function Signup() {
         <Link to="/signin">Have An Account? Sign In!</Link>
       </form>
     </div>
+    </>
   )
 }
 

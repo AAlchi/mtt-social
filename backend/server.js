@@ -1,11 +1,11 @@
-const express = require('express');
+const express = require('express')
 const app = express();
-const dotenv = require('dotenv');
-const mongoose = require('mongoose');
-const cors = require('cors');
+const dotenv = require('dotenv')
+const mongoose = require('mongoose')
+const cors = require('cors')
+const User = require('./models/userModel.js')
 
 app.use(cors());
-app.use(express.json());
 dotenv.config();
 
 mongoose
@@ -17,7 +17,18 @@ mongoose
     console.log(err.message);
   });
 
-app.use('/', require("./routes/userRoutes.js"))
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+const userRouter = require('./routes/userRoutes.js')
+
+app.use('/', userRouter)
+
+app.use((err, req, res, next) => {
+  res.status(500).send({ message: err.message });
+});
+
+
 
 const port = process.env.PORT || 5000
 app.listen(port, () => {
