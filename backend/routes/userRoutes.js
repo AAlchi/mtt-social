@@ -17,6 +17,7 @@ userRouter.route('/create').post((req, res) => {
     const zipCode = req.body.zipCode;
     const dob = req.body.dob;
     const password = req.body.password;
+    const image = req.body.image;
 
     const newUser = new User({
         fName,
@@ -26,10 +27,17 @@ userRouter.route('/create').post((req, res) => {
         address,
         zipCode,
         dob,
-        password
+        password,
+        image,
     })
 
-    newUser.save()
+    const user = User.findOne({email: req.body.email})
+
+    if (user) {
+        res.send("User Already Exists")
+    } else {
+        newUser.save()
+    }
 })
 
 const generateToken = (user) => {
@@ -44,6 +52,7 @@ const generateToken = (user) => {
             address: user.address,
             zipCode: user.zipCode,
             dob: user.dob,
+            image: user.image,
         },
         process.env.JWT_SECRET,
         {
@@ -52,6 +61,37 @@ const generateToken = (user) => {
       );
     
 }
+
+userRouter.post('/updateuser', (req, res) => {
+    const id = req.body.id;
+    const fName = req.body.fName;
+    const lName = req.body.lName;
+    const email = req.body.email;
+    const username = req.body.username;
+    const address = req.body.address;
+    const zipCode = req.body.zipCode;
+    const dob = req.body.dob;
+    const image = req.body.image;
+
+    User.updateOne({_id:id}, {
+        $set:{
+            fName: fName,
+            lName: lName,
+            email: email,
+            username: username,
+            address: address,
+            zipCode: zipCode,
+            dob: dob,
+            image: image,
+        }
+    }, (err, doc) => {
+        if (err) {
+            return console.log(err)
+        } else {
+            res.json(doc)
+        }
+    })
+})
 
 userRouter.post('/signin', expressAsyncHandler(async (req, res) => {
     const user = await User.findOne({email: req.body.email})
@@ -68,6 +108,7 @@ userRouter.post('/signin', expressAsyncHandler(async (req, res) => {
                 zipCode: user.zipCode,
                 dob: user.dob,
                 password: user.password,
+                image: user.image,
                 token: generateToken(user),
             })
             return;
@@ -77,34 +118,4 @@ userRouter.post('/signin', expressAsyncHandler(async (req, res) => {
 }))
 
 
-// router.route('/signin').get((req, res) => {
-//     User.find({email: req.body.email}).then(foundUsers => res.json(foundUsers))
-//     res.status(401).send({email: req.body.email})
-// })
-
-// userRouter.post('/signin', expressAsyncHandler(async (req, res) => {
-//     const user = await User.findOne({email: req.body.email});
-
-//     if (user) {
-//         if (bcrypt.compareSync(req.body.password, user.password)) {
-//             res.send({
-//                 _id: user._id,
-//                 fName: user.fName,
-//                 lName: user.lName,
-//                 email: user.email,
-//                 username: user.username,
-//                 address: user.address,
-//                 zipCode: user.zipCode,
-//                 dob: user.dob,
-//                 password: user.password,
-//                 token: generateToken(user),
-//             })
-//             return;
-//         }
-//     }
-//     res.status(401).send("Wrong Username Or Password")
-// }        
-// ))
-
-  
 module.exports = userRouter;

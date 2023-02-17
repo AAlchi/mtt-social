@@ -100,7 +100,7 @@ export default function Index() {
             <h6>Share something</h6>
             <input type="text" className='input_post' placeholder='  Type Here...'/>
             <h6>Choose An Image:</h6>
-            <input type="file" />
+            <input type="file" accept="image/*"/>
             <button className='button_post'>Post</button>
             </div>
             <div className='posts'>

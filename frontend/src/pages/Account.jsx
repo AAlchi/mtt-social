@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './style.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faNavicon, faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { useLocation, useNavigate } from 'react-router-dom';
+import Axios from 'axios';
 
 
 export default function Account() {
@@ -38,14 +39,65 @@ export default function Account() {
     const you = () => {
         navigate('/you')
     }
+
+    const [fname, setFname] = useState('');
+    const [lname, setLname] = useState('');
+    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
+    const [address, setAddress] = useState('');
+    const [zipcode, setZipcode] = useState('');
+    const [dob, setDob] = useState('');
+    const [image, setImage] = useState('');
+
   
-  
+
+    function done(e) {
+      e.preventDefault()
+      const display = document.querySelector(".display");
+        const input = document.querySelector("#upload");
+        let img = document.querySelector("img");
+        
+          let reader = new FileReader();
+          reader.readAsDataURL(input.files[0]);
+          reader.addEventListener("load", () => {
+            console.log(reader.result)
+            display.innerHTML = `<img src=${reader.result} alt=''/>`;
+            setImage(reader.result)
+
+          });
+          
+    
+    }
+ 
   
   
     const navigate = useNavigate();
     const logout = () => {
         localStorage.removeItem('USER')
         navigate('/');
+    }
+    let errors = ""
+
+    const updateProfile = async (e) => {
+      e.preventDefault()
+
+      try {
+        await Axios.post('http://localhost:5000/updateuser', {
+          id: userI._id,
+          fname,
+          lname,
+          email,
+          username,
+          address,
+          zipcode,
+          dob,
+          image
+        })
+        errors = "Log Out For Update To Apply"
+      } catch (err) {
+        console.log(err)
+        errors = "Something went wrong. Please try again later."
+      }
     }
 
     
@@ -67,7 +119,7 @@ export default function Account() {
         }
     }
     return (
-        <>
+        <div className='account'>
 
 <div className="title">
             <center><h1>MTT SOCIAL</h1></center>
@@ -99,37 +151,47 @@ export default function Account() {
 
           <form className="account_main">
             <h2>Your Account</h2>
-            <div className="account_contents">
+            <div className='profile_picture'>
+              <h6>Profile Picture:</h6>
+              <div class="display"><img src={userI.image} alt="" /></div>
+              <button onClick={done}>Upload Picture</button>
+
+            </div>
+            <div className='thi'>
+              <input type="file" accept="image/*" id="upload"/>
+              <label for="upload"> </label>
+
+            </div>
               <div>
               <h6>First Name:</h6>
-              <input type="text" value={userI.fName}/>
+              <input type="text" onChange={(e) => setFname(e.target.value)} value={userI.fName}/>
               </div>
               <div>
               <h6>Last Name:</h6>
-              <input type="text" value={userI.lName}/>
+              <input type="text" onChange={(e) => setLname(e.target.value)} value={userI.lName}/>
               </div>
               <div>
               <h6>Email:</h6>
-              <input type="text" value={userI.email}/>
+              <input type="text" onChange={(e) => setEmail(e.target.value)} value={userI.email}/>
               </div>
               <div>
               <h6>Username:</h6>
-              <input type="text" value={userI.username}/>
+              <input type="text" onChange={(e) => setUsername(e.target.value)} value={userI.username}/>
               </div>
               <div>
               <h6>Address:</h6>
-              <input type="text" value={userI.address}/>
+              <input type="text" onChange={(e) => setAddress(e.target.value)} value={userI.address}/>
               </div>
               <div>
               <h6>Zip Code:</h6>
-              <input type="text" value={userI.zipCode}/>
+              <input type="text" onChange={(e) => setZipcode(e.target.value)} value={userI.zipCode}/>
               </div>
               <div>
               <h6>Date Of Birth:</h6>
-              <input type="text" value={userI.dob}/>
+              <input type="text" onChange={(e) => setDob(e.target.value)} value={userI.dob}/>
               </div>
-              <button>Update Profile</button>
-            </div>
+              <span>{errors}</span>
+              <button onClick={updateProfile}>Update Profile</button>
           </form>
 
 
@@ -155,6 +217,6 @@ export default function Account() {
             </ul>
         </div>
     </div>
-    </>
+    </div>
   )
 }

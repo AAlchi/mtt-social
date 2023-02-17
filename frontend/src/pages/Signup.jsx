@@ -3,8 +3,17 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import bcrypt from 'bcryptjs';
 import Header from '../components/Header';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { storage } from './firebase';
+
 
 function Signup() {
+  const [progress, setProgress] = useState(0)
+  const navigate = useNavigate();
+  const userI = JSON.parse(localStorage.getItem('USER'))
+  const { search } = useLocation();
+  const redirectInUrl = new URLSearchParams(search).get('redirect');
+  const redirect = redirectInUrl ? redirectInUrl : '/home';
   const [form, setForm] = useState({});
   const setField = (field, value) => {
     setForm({
@@ -12,6 +21,7 @@ function Signup() {
       [field]:value
     })
   }
+ 
   const calcAge = (dateString) => {
     const today = new Date()
     const birthDate = new Date(dateString)
@@ -22,21 +32,27 @@ function Signup() {
     }
     return age;
   }
-  const { search } = useLocation();
-  const redirectInUrl = new URLSearchParams(search).get('redirect');
-  const redirect = redirectInUrl ? redirectInUrl : '/home';
-
-
-
-  const navigate = useNavigate();
-
-  const userI = JSON.parse(localStorage.getItem('USER'))
-
+ 
   useEffect(() => {
     if (userI) {
       navigate(redirect);
     }
   }, [navigate, redirect, userI]);
+
+   const uploadFiles = (file) => {
+     if (!file) return;
+      const storageRef = ref(storage, `/profile_image/${file.name}`)
+      const uploadTask = uploadBytesResumable(storageRef, file);
+
+      uploadTask.on("state_changed", (snapshot) => {
+        const progress = Math.round(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        setProgress(progress);
+
+      }, (err) => console.log(err),
+        () => {
+        getDownloadURL(uploadTask.snapshot.ref).then(url => console.log(url))
+      })
+  }
 
  
   const handleSubmit = (e, errors) => {
@@ -47,7 +63,19 @@ function Signup() {
     } else if (calcAge(dob) < 6 || calcAge(dob) > 100) {
       errors = "Wrong DOB or too young or too old"
     } else {
-      const newUser = {
+   
+     
+      
+        errors = "Your All Signed Up!"
+      
+      //firebase
+
+      const file = e.target[0].files[0];
+      uploadFiles(file)
+      let image = `https://firebasestorage.googleapis.com/v0/b/mtt-social-4cf10.appspot.com/o/profile_image%2F${file.name}?alt=media`;
+
+      //mongodb
+       const newUser = {
         fName: fName,
         lName: lName,
         email: email,
@@ -56,21 +84,32 @@ function Signup() {
         zipCode: zipCode,
         dob: dob,
         password: bcrypt.hashSync(password),
+        image: image,
       }
-      axios.post('http://localhost:5000/create', newUser)
-      errors = "You are all signed up "+username+"!"
+      axios.post('http://localhost:5000/create', newUser).then(res => JSON.stringify(localStorage.setItem('USER_EXISTS', res.data)))
+
+
+      if (localStorage.getItem('USER_EXISTS') == "User Already Exists") {
+        errors = "A user with that email already exists"
+      } else {
+        errors = "Your All Signed Up!"
+      }
      }
-    document.getElementById('error').innerHTML = errors
+    document.getElementById('error').innerHTML = errors; 
   }
+
+ 
+
   return (
     <>
-              <Header />
-
+    <Header />
     <div className='signup'>
+        <form onSubmit={handleSubmit} className="signup_content">
+             <h2>Sign Up</h2>
+          <h6>Your Profile Picture:</h6>
 
-      <form className="signup_content">
-        <h2>Sign Up</h2>
-        <h6>Enter The Required Information</h6>
+        <input id="file" type="file" accept="image/*"/>
+     
         <input type="text" name="firstName" onChange={e => setField('fName', e.target.value)}value={form.fName} placeholder='First Name'/>
         <input type="text" name="lastName" onChange={e => setField('lName', e.target.value)}value={form.lName} placeholder='Last Name'/>
         <input type="email" name="email" onChange={e => setField('email', e.target.value)} value={form.email} placeholder='Email'/>
@@ -79,8 +118,9 @@ function Signup() {
         <input type="text" name="zipCode" onChange={e => setField('zipCode', e.target.value)} value={form.zipCode} placeholder='Zipcode'/>
         <input type="date" name="zipCode" onChange={e => setField('dob', e.target.value)} value={form.dob} placeholder='Birthday'/>
         <input type="password" name="password" onChange={e => setField('password', e.target.value)} value={form.password} placeholder='Password'/>
+
         <span id="error"></span>
-        <button onClick={handleSubmit}>Sign Up</button>
+        <button type="submit">Sign Up</button>
         <Link to="/signin">Have An Account? Sign In!</Link>
       </form>
     </div>
