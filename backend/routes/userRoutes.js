@@ -15,7 +15,6 @@ userRouter.route('/post').post((req, res) => {
     var day = String(today.getDate()).padStart(2, '0');
     var month = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var year = today.getFullYear();
-
     const name = req.body.name;
     const date = day + "/" + month + "/" + year;
     const image = req.body.image;
@@ -23,6 +22,7 @@ userRouter.route('/post').post((req, res) => {
     const postId = req.body.postId;
     const profilePic = req.body.profilePic;
     const username = req.body.username;
+    const like = 0;
 
     
 
@@ -34,6 +34,7 @@ userRouter.route('/post').post((req, res) => {
         postId,
         profilePic,
         username,
+        like,
     })
 
     newPost.save()

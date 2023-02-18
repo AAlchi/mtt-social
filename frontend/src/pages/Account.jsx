@@ -132,7 +132,7 @@ export default function Account() {
                 <h2>Options</h2>
                 <li onClick={home}>Home</li>
                 <li onClick={you}>Your Page</li>
-                <li onClick={feed}>Feed</li>
+                <li onClick={feed}>Liked Posts</li>
                 <li onClick={account}>Account</li>
                 <li onClick={friends}>Freinds</li>
                 <li onClick={following}>Following</li>

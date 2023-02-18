@@ -3,7 +3,7 @@ import './style.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 
-export default function Feed() {
+export default function Like() {
     const userI = JSON.parse(localStorage.getItem('USER'))
     const { search } = useLocation();
     const redirectInUrl = new URLSearchParams(search).get('redirect');
@@ -21,8 +21,8 @@ export default function Feed() {
         navigate('/account')
     }
   
-    const feed = () => {
-        navigate('/feed')
+    const like = () => {
+        navigate('/like')
     }
   
     const following = () => {
@@ -84,7 +84,7 @@ export default function Feed() {
                 <h2>Options</h2>
                 <li onClick={home}>Home</li>
                 <li onClick={you}>Your Page</li>
-                <li onClick={feed}>Feed</li>
+                <li onClick={like}>Liked Posts</li>
                 <li onClick={account}>Account</li>
                 <li onClick={friends}>Freinds</li>
                 <li onClick={following}>Following</li>
@@ -95,7 +95,10 @@ export default function Feed() {
         <div>
            
 
-          Feed
+                    <div className="like">
+                        <div className="weather"></div>
+                        <div className="news"></div>
+          </div>
 
 
 

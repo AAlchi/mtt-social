@@ -26,8 +26,8 @@ export default function You() {
         navigate('/account')
     }
   
-    const feed = () => {
-        navigate('/feed')
+    const like = () => {
+        navigate('/like')
     }
   
     const following = () => {
@@ -121,6 +121,10 @@ export default function You() {
         }).then(res => setPosts(res.data))
     })
 
+    const likePost = () => {
+        
+    }
+
     return (
         <>
 
@@ -141,7 +145,7 @@ export default function You() {
                 <h2>Options</h2>
                 <li onClick={home}>Home</li>
                 <li onClick={you}>Your Page</li>
-                <li onClick={feed}>Feed</li>
+                <li onClick={like}>Liked Posts</li>
                 <li onClick={account}>Account</li>
                 <li onClick={friends}>Freinds</li>
                 <li onClick={following}>Following</li>
@@ -179,9 +183,11 @@ export default function You() {
                     </div>
                     <img className="imgPost" src={post.image} alt={post.name} />
                     <p>{post.description}</p>
+                    <h6>{post.like} likes</h6>
                     <div className='person'>
-                    <div className='postButton'><FontAwesomeIcon icon={faThumbsUp} /> I like this</div>
+                    <div onClick={likePost} className='postButton'><FontAwesomeIcon icon={faThumbsUp} /> I like this</div>
                     <div className='postButton'><FontAwesomeIcon icon={faThumbsDown} /> Not For Me</div>
+                    
                     </div>
                 </div>
             )).reverse()}    
