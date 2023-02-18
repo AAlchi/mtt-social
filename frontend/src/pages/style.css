@@ -196,6 +196,10 @@
     overflow-x: hidden;
 }
 
+.profile_img {
+    border-radius: 50%;
+}
+
 .input_post {
     width: 90%;
     height: 40px;

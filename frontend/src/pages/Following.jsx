@@ -36,7 +36,7 @@ export default function Following() {
     }
   
     const you = () => {
-        navigate('/you')
+        navigate(`/${userI.username}`)
     }
   
   

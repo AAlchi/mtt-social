@@ -36,7 +36,7 @@ export default function Followers() {
     }
   
     const you = () => {
-        navigate('/you')
+        navigate(`/${userI.username}`)
     }
   
   

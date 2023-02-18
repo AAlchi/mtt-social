@@ -36,7 +36,7 @@ export default function Index() {
     }
   
     const you = () => {
-        navigate('/you')
+        navigate(`/${userI.username}`)
     }
   
   

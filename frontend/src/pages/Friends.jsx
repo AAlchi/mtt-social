@@ -36,7 +36,7 @@ export default function Friends() {
     }
   
     const you = () => {
-        navigate('/you')
+        navigate(`/${userI.username}`)
     }
   
   

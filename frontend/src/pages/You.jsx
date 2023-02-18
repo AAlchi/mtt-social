@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './style.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faNavicon, faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
@@ -37,7 +37,7 @@ export default function You() {
     }
   
     const you = () => {
-        navigate('/you')
+        navigate(`/${userI.username}`)
     }
   
   
@@ -72,7 +72,35 @@ export default function You() {
 
     const usernames = window.location.pathname.slice(1);
 
+    let [image, setImage] = useState({});
+    let [fName, setFName] = useState('');
+    let [lName, setLName] = useState('');
+    let [username, setUsername] = useState('');
+    let [dob, setDob] = useState('');
+    let name = fName + " " + lName;
+    useEffect(() => {
+        const data = async (req, res) => {
+            try {
+                await axios.post('http://localhost:5000/fetchUser', {
+                    username: usernames,
+                }).then(res => (
+                    setImage(res.data.image),
+                    setFName(res.data.fName),
+                    setLName(res.data.lName),
+                    setUsername(res.data.username),
+                    setDob(res.data.dob)
+                ))
+                
+
+        } catch (err) {
+        } 
+        }
+        data()
+        console.log(image)
+    }, [])
+
     
+
     return (
         <>
 
@@ -106,12 +134,11 @@ export default function You() {
 
           <div className="you">
                         <div className="banner">
-                            <img src={userI.image} alt={userI.name} /></div>
+                            <img src={image} alt={fName} /></div>
                 <div className="you_content">
-                <div className="you_name">Username: {userI.username}</div> 
-                <div className="you_name">First Name: {userI.fName}</div>
-                <div className="you_name">Last Name: {userI.lName}</div>
-                <div className="you_name">Born On: {userI.dob.substring(0, userI.dob.length - 14)}</div>
+                <div className="you_name">Username: {username}</div> 
+                <div className="you_name">Name: {name}</div> 
+                <div className="you_name">Born On: {dob.substring(0, dob.length - 14)}</div>
                 <div>
                 <button>Add Friend</button>
                 <button>Report</button>

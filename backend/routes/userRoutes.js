@@ -114,5 +114,26 @@ userRouter.post('/signin', expressAsyncHandler(async (req, res) => {
     }
 }))
 
+userRouter.post('/fetchUser', expressAsyncHandler(async (req, res) => {
+    const user = await User.findOne({username: req.body.username})
+
+    if (user) {
+            res.send({
+                _id: user._id,
+                fName: user.fName,
+                lName: user.lName,
+                email: user.email,
+                username: user.username,
+                dob: user.dob,
+                image: user.image,
+                token: generateToken(user),
+            })
+            return;
+    } else {
+        res.status(401).send("Can't Find User")
+    }
+}))
+
+
 
 module.exports = userRouter;

@@ -37,7 +37,7 @@ export default function Account() {
     }
   
     const you = () => {
-        navigate('/you')
+        navigate(`/${userI.username}`)
     }
 
     const [fname, setFname] = useState('');
@@ -153,7 +153,7 @@ export default function Account() {
             <h2>Your Account</h2>
             <div className='profile_picture'>
               <h6>Profile Picture:</h6>
-              <div class="display"><img src={userI.image} alt="" /></div>
+              <div class="display"><img className="profile_img" src={userI.image} alt="" /></div>
               <button onClick={done}>Upload Picture</button>
 
             </div>
@@ -186,10 +186,7 @@ export default function Account() {
               <h6>Zip Code:</h6>
               <input type="text" onChange={(e) => setZipcode(e.target.value)} value={userI.zipCode} required/>
               </div>
-              <div>
-              <h6>Date Of Birth:</h6>
-              <input type="text" onChange={(e) => setDob(e.target.value)} value={userI.dob} required/>
-              </div>
+             
               <span>{errors}</span>
               <button type="submit">Update Profile</button>
           </form>
