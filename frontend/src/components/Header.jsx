@@ -1,14 +1,11 @@
-import React, { useEffect } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Header() {
   
-  const { search } = useLocation();
-  const redirectInUrl = new URLSearchParams(search).get('redirect');
 
 
 
-  const navigate = useNavigate();
 
   const userI = JSON.parse(localStorage.getItem('USER'))
 
@@ -24,7 +21,7 @@ function Header() {
     }
 
  const logout = () => {
-  if (signup == "/logout") {
+  if (signup === "/logout") {
     localStorage.removeItem('USER');
   }
   let phone = document.getElementById('header_phone_icons');
@@ -45,7 +42,7 @@ function Header() {
 
     
 
-    if (phone.style.display == "flex") {
+    if (phone.style.display === "flex") {
       phone.style.display = "none";
       block.style.display = "block";
     } else {
@@ -64,7 +61,7 @@ function Header() {
         </div>
         <div className="header_icons">
             <Link className="header_icon" to={signin}>{SIGN1}</Link>
-            <Link onClick={logout} className="header_icon" to={signup == "/logout" ? "" : "/signup"}>{SIGN2}</Link>
+            <Link onClick={logout} className="header_icon" to={signup === "/logout" ? "" : "/signup"}>{SIGN2}</Link>
         </div>
     </div>
         <div className="header_phone_icons" id="header_phone_icons">
@@ -79,7 +76,7 @@ function Header() {
             <Link onClick={phoneDone} className="header_phone_icon" to='you'>Your Page</Link>
             </>
             ):""}
-            <Link onClick={logout} className="header_phone_icon" to={signup == "/logout" ? "" : "/signup"}>{SIGN2}</Link>
+            <Link onClick={logout} className="header_phone_icon" to={signup === "/logout" ? "" : "/signup"}>{SIGN2}</Link>
         </div>
         <div id="block" className="block"></div>
     </div>

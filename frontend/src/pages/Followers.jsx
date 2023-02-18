@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react'
 import './style.css';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faNavicon, faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { useLocation, useNavigate } from 'react-router-dom';
 
 
@@ -60,7 +58,7 @@ export default function Followers() {
     const phoneThing = () => {
         const side = document.getElementById('sidebar');
 
-        if (side.style.display == "flex") {
+        if (side.style.display === "flex") {
             side.style.display = "none";
         } else {
             side.style.display = "flex";

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import './style.css';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faNavicon, faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -61,7 +59,7 @@ export default function You() {
     const phoneThing = () => {
         const side = document.getElementById('sidebar');
 
-        if (side.style.display == "flex") {
+        if (side.style.display === "flex") {
             side.style.display = "none";
         } else {
             side.style.display = "flex";
@@ -84,6 +82,7 @@ export default function You() {
                 await axios.post('http://localhost:5000/fetchUser', {
                     username: usernames,
                 }).then(res => (
+                    // eslint-disable-next-line no-sequences
                     setImage(res.data.image),
                     setFName(res.data.fName),
                     setLName(res.data.lName),
@@ -97,7 +96,7 @@ export default function You() {
         }
         data()
         console.log(image)
-    }, [])
+    })
 
     
 

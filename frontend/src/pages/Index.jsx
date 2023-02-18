@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './style.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faNavicon, faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { useLocation, useNavigate } from 'react-router-dom';
 
 
@@ -60,7 +60,7 @@ export default function Index() {
     const phoneThing = () => {
         const side = document.getElementById('sidebar');
 
-        if (side.style.display == "flex") {
+        if (side.style.display === "flex") {
             side.style.display = "none";
         } else {
             side.style.display = "flex";
@@ -110,7 +110,7 @@ export default function Index() {
                     <div className="author">From: Jerry M. Michal</div>
                     <div className="date">On: Oct, 15, 2023</div>
                     </div>
-                    <img className="imgPost" src="https://th.bing.com/th/id/R.892bb645c09c766efcc5bc4d0c93094a?rik=slmcvUaa5yToAw&riu=http%3a%2f%2fwww.wallpapers13.com%2fwp-content%2fuploads%2f2015%2f12%2fNature-Lake-Bled.-Desktop-background-image.jpg&ehk=c2raFC95S12P3OL0%2fwdM60ro3oUxsSEajkuGEN%2fsjbo%3d&risl=1&pid=ImgRaw&r=0" alt="image" />
+                    <img className="imgPost" src="https://th.bing.com/th/id/R.892bb645c09c766efcc5bc4d0c93094a?rik=slmcvUaa5yToAw&riu=http%3a%2f%2fwww.wallpapers13.com%2fwp-content%2fuploads%2f2015%2f12%2fNature-Lake-Bled.-Desktop-background-image.jpg&ehk=c2raFC95S12P3OL0%2fwdM60ro3oUxsSEajkuGEN%2fsjbo%3d&risl=1&pid=ImgRaw&r=0" alt="sample"/>
                     <p>Check out this beautiful place I went to over the summer! Very cool!</p>
                     <div className='person'>
                     <div className='postButton'><FontAwesomeIcon icon={faThumbsUp} /> I like this</div>
@@ -122,7 +122,7 @@ export default function Index() {
                     <div className="author">From : Jerry M. Michal</div>
                     <div className="date">On: Oct, 15, 2023</div>
                     </div>
-                    <img className="imgPost" src="https://th.bing.com/th/id/R.892bb645c09c766efcc5bc4d0c93094a?rik=slmcvUaa5yToAw&riu=http%3a%2f%2fwww.wallpapers13.com%2fwp-content%2fuploads%2f2015%2f12%2fNature-Lake-Bled.-Desktop-background-image.jpg&ehk=c2raFC95S12P3OL0%2fwdM60ro3oUxsSEajkuGEN%2fsjbo%3d&risl=1&pid=ImgRaw&r=0" alt="image" />
+                    <img className="imgPost" src="https://th.bing.com/th/id/R.892bb645c09c766efcc5bc4d0c93094a?rik=slmcvUaa5yToAw&riu=http%3a%2f%2fwww.wallpapers13.com%2fwp-content%2fuploads%2f2015%2f12%2fNature-Lake-Bled.-Desktop-background-image.jpg&ehk=c2raFC95S12P3OL0%2fwdM60ro3oUxsSEajkuGEN%2fsjbo%3d&risl=1&pid=ImgRaw&r=0" alt="sample" />
                     <p>Check out this beautiful place I went to over the summer! Very cool!</p>
                     <div className='person'>
                     <div className='postButton'><FontAwesomeIcon icon={faThumbsUp} /> I like this</div>
@@ -134,7 +134,7 @@ export default function Index() {
                     <div className="author">From : Jerry M. Michal</div>
                     <div className="date">On: Oct, 15, 2023</div>
                     </div>
-                    <img className="imgPost" src="https://th.bing.com/th/id/R.892bb645c09c766efcc5bc4d0c93094a?rik=slmcvUaa5yToAw&riu=http%3a%2f%2fwww.wallpapers13.com%2fwp-content%2fuploads%2f2015%2f12%2fNature-Lake-Bled.-Desktop-background-image.jpg&ehk=c2raFC95S12P3OL0%2fwdM60ro3oUxsSEajkuGEN%2fsjbo%3d&risl=1&pid=ImgRaw&r=0" alt="image" />
+                    <img className="imgPost" src="https://th.bing.com/th/id/R.892bb645c09c766efcc5bc4d0c93094a?rik=slmcvUaa5yToAw&riu=http%3a%2f%2fwww.wallpapers13.com%2fwp-content%2fuploads%2f2015%2f12%2fNature-Lake-Bled.-Desktop-background-image.jpg&ehk=c2raFC95S12P3OL0%2fwdM60ro3oUxsSEajkuGEN%2fsjbo%3d&risl=1&pid=ImgRaw&r=0" alt="sample" />
                     <p>Check out this beautiful place I went to over the summer! Very cool!</p>
                     <div className='person'>
                     <div className='postButton'><FontAwesomeIcon icon={faThumbsUp} /> I like this</div>
@@ -146,7 +146,7 @@ export default function Index() {
                     <div className="author">From : Jerry M. Michal</div>
                     <div className="date">On: Oct, 15, 2023</div>
                     </div>
-                    <img className="imgPost" src="https://th.bing.com/th/id/R.892bb645c09c766efcc5bc4d0c93094a?rik=slmcvUaa5yToAw&riu=http%3a%2f%2fwww.wallpapers13.com%2fwp-content%2fuploads%2f2015%2f12%2fNature-Lake-Bled.-Desktop-background-image.jpg&ehk=c2raFC95S12P3OL0%2fwdM60ro3oUxsSEajkuGEN%2fsjbo%3d&risl=1&pid=ImgRaw&r=0" alt="image" />
+                    <img className="imgPost" src="https://th.bing.com/th/id/R.892bb645c09c766efcc5bc4d0c93094a?rik=slmcvUaa5yToAw&riu=http%3a%2f%2fwww.wallpapers13.com%2fwp-content%2fuploads%2f2015%2f12%2fNature-Lake-Bled.-Desktop-background-image.jpg&ehk=c2raFC95S12P3OL0%2fwdM60ro3oUxsSEajkuGEN%2fsjbo%3d&risl=1&pid=ImgRaw&r=0" alt="sample" />
                     <p>Check out this beautiful place I went to over the summer! Very cool!</p>
                     <div className='person'>
                     <div className='postButton'><FontAwesomeIcon icon={faThumbsUp} /> I like this</div>

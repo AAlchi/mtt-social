@@ -1,7 +1,6 @@
 import Axios from 'axios';
 import React, {useEffect, useState} from 'react';
-import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
-import bcrypt from 'bcryptjs';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 
 
@@ -46,7 +45,7 @@ function Signin() {
         errors = err;
       }
       
-      if (localStorage.getItem('USER') == '' || localStorage.getItem('USER') == null) {
+      if (localStorage.getItem('USER') === '' || localStorage.getItem('USER') == null) {
         errors = "Wrong Username Or Password"
       } else {
         navigate('/home')

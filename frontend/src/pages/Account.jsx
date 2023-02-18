@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import './style.css';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faNavicon, faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { useLocation, useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 
@@ -46,7 +44,6 @@ export default function Account() {
     const [username, setUsername] = useState('');
     const [address, setAddress] = useState('');
     const [zipcode, setZipcode] = useState('');
-    const [dob, setDob] = useState('');
     const [image, setImage] = useState('');
 
   
@@ -55,7 +52,6 @@ export default function Account() {
       e.preventDefault()
       const display = document.querySelector(".display");
         const input = document.querySelector("#upload");
-        let img = document.querySelector("img");
         
           let reader = new FileReader();
           reader.readAsDataURL(input.files[0]);
@@ -90,7 +86,6 @@ export default function Account() {
           username,
           address,
           zipcode,
-          dob,
           image
         })
         errors = "Log Out For Update To Apply"
@@ -112,7 +107,7 @@ export default function Account() {
     const phoneThing = () => {
         const side = document.getElementById('sidebar');
 
-        if (side.style.display == "flex") {
+        if (side.style.display === "flex") {
             side.style.display = "none";
         } else {
             side.style.display = "flex";

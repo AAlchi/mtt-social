@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import Header from './components/Header';
 import Account from './pages/Account';
 import Feed from './pages/Feed';
 import Followers from './pages/Followers';
@@ -14,18 +13,9 @@ import You from './pages/You';
 
 function App() {
 
-const [back, setBack] = useState([{}])
-const userI = localStorage.getItem('USER')
 
-useEffect(() => {
-  fetch("/api").then (
-    response => response.json()
-  ).then (
-    data => {
-      setBack(data)
-    }
-  )
-}, [])
+  
+
 
   return (
     <BrowserRouter>

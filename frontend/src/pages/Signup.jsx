@@ -66,7 +66,7 @@ function Signup() {
    
      
       
-        errors = "Your All Signed Up!"
+      errors = "Your All Signed Up!" + progress;
       
       //firebase
 
