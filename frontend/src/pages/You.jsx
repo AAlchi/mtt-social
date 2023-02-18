@@ -184,7 +184,7 @@ export default function You() {
                     <div className='postButton'><FontAwesomeIcon icon={faThumbsDown} /> Not For Me</div>
                     </div>
                 </div>
-            ))}    
+            )).reverse()}    
             
            
             
