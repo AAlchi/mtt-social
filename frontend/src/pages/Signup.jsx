@@ -88,12 +88,8 @@ function Signup() {
       }
       axios.post('http://localhost:5000/create', newUser).then(res => JSON.stringify(localStorage.setItem('USER_EXISTS', res.data)))
 
+      navigate('/signin')
 
-      if (localStorage.getItem('USER_EXISTS') == "User Already Exists") {
-        errors = "A user with that email already exists"
-      } else {
-        errors = "Your All Signed Up!"
-      }
      }
     document.getElementById('error').innerHTML = errors; 
   }
@@ -108,7 +104,7 @@ function Signup() {
              <h2>Sign Up</h2>
           <h6>Your Profile Picture:</h6>
 
-        <input id="file" type="file" accept="image/*"/>
+          <input id="file" type="file" accept="jpg png jpeg gif"/>
      
         <input type="text" name="firstName" onChange={e => setField('fName', e.target.value)}value={form.fName} placeholder='First Name'/>
         <input type="text" name="lastName" onChange={e => setField('lName', e.target.value)}value={form.lName} placeholder='Last Name'/>

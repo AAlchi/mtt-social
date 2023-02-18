@@ -8,6 +8,7 @@ const bcrypt = require('bcryptjs')
 
 const userRouter = express.Router();
 
+
 userRouter.route('/create').post((req, res) => {
     const fName = req.body.fName;
     const lName = req.body.lName;
@@ -31,13 +32,7 @@ userRouter.route('/create').post((req, res) => {
         image,
     })
 
-    const user = User.findOne({email: req.body.email})
-
-    if (user) {
-        res.send("User Already Exists")
-    } else {
-        newUser.save()
-    }
+    newUser.save()
 })
 
 const generateToken = (user) => {
@@ -61,6 +56,8 @@ const generateToken = (user) => {
       );
     
 }
+
+
 
 userRouter.post('/updateuser', (req, res) => {
     const id = req.body.id;
