@@ -149,7 +149,7 @@ export default function Account() {
         <div>
            
 
-          <form className="account_main">
+            <form onSubmit={updateProfile} className="account_main">
             <h2>Your Account</h2>
             <div className='profile_picture'>
               <h6>Profile Picture:</h6>
@@ -158,40 +158,40 @@ export default function Account() {
 
             </div>
             <div className='thi'>
-              <input type="file" accept="image/*" id="upload"/>
+              <input type="file" accept="image/*" id="upload" requried/>
               <label for="upload"> </label>
 
             </div>
               <div>
               <h6>First Name:</h6>
-              <input type="text" onChange={(e) => setFname(e.target.value)} value={userI.fName}/>
+              <input type="text" onChange={(e) => setFname(e.target.value)} value={userI.fName} required/>
               </div>
               <div>
               <h6>Last Name:</h6>
-              <input type="text" onChange={(e) => setLname(e.target.value)} value={userI.lName}/>
+              <input type="text" onChange={(e) => setLname(e.target.value)} value={userI.lName} required/>
               </div>
               <div>
               <h6>Email:</h6>
-              <input type="text" onChange={(e) => setEmail(e.target.value)} value={userI.email}/>
+              <input type="text" onChange={(e) => setEmail(e.target.value)} value={userI.email} required/>
               </div>
               <div>
               <h6>Username:</h6>
-              <input type="text" onChange={(e) => setUsername(e.target.value)} value={userI.username}/>
+              <input type="text" onChange={(e) => setUsername(e.target.value)} value={userI.username} required/>
               </div>
               <div>
               <h6>Address:</h6>
-              <input type="text" onChange={(e) => setAddress(e.target.value)} value={userI.address}/>
+              <input type="text" onChange={(e) => setAddress(e.target.value)} value={userI.address} required/>
               </div>
               <div>
               <h6>Zip Code:</h6>
-              <input type="text" onChange={(e) => setZipcode(e.target.value)} value={userI.zipCode}/>
+              <input type="text" onChange={(e) => setZipcode(e.target.value)} value={userI.zipCode} required/>
               </div>
               <div>
               <h6>Date Of Birth:</h6>
-              <input type="text" onChange={(e) => setDob(e.target.value)} value={userI.dob}/>
+              <input type="text" onChange={(e) => setDob(e.target.value)} value={userI.dob} required/>
               </div>
               <span>{errors}</span>
-              <button onClick={updateProfile}>Update Profile</button>
+              <button type="submit">Update Profile</button>
           </form>
 
 

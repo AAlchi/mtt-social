@@ -34,7 +34,7 @@ useEffect(() => {
       <Route path="/signup" element={<Signup />}/>
       <Route path="/signin" element={<Signin />}/>
       <Route path="/home" element={<Index />}/>
-      <Route path="/you" element={<You />}/>
+      <Route path="/:username" element={<You />}/>
       <Route path="/feed" element={<Feed />}/>
       <Route path="/account" element={<Account />}/>
       <Route path="/friends" element={<Friends />}/>

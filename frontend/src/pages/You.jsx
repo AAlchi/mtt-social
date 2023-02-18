@@ -3,6 +3,7 @@ import './style.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faNavicon, faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 export default function You() {
@@ -65,7 +66,13 @@ export default function You() {
         } else {
             side.style.display = "flex";
         }
+
+        
     }
+
+    const usernames = window.location.pathname.slice(1);
+
+    
     return (
         <>
 
@@ -97,7 +104,20 @@ export default function You() {
         <div>
            
 
-          You
+          <div className="you">
+                        <div className="banner">
+                            <img src={userI.image} alt={userI.name} /></div>
+                <div className="you_content">
+                <div className="you_name">Username: {userI.username}</div> 
+                <div className="you_name">First Name: {userI.fName}</div>
+                <div className="you_name">Last Name: {userI.lName}</div>
+                <div className="you_name">Born On: {userI.dob.substring(0, userI.dob.length - 14)}</div>
+                <div>
+                <button>Add Friend</button>
+                <button>Report</button>
+                </div>
+            </div>
+          </div>
 
 
 
