@@ -1,9 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './style.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import data from './data';
+import axios from 'axios';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { storage } from './firebase';
 
 
 export default function Index() {
@@ -67,6 +70,57 @@ export default function Index() {
             side.style.display = "flex";
         }
     }
+
+    const uploadFiles = (file) => {
+     if (!file) return;
+      const storageRef = ref(storage, `/post_image/${file.name}`)
+      const uploadTask = uploadBytesResumable(storageRef, file);
+
+      uploadTask.on("state_changed", (snapshot) => {
+        const progress = Math.round(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log(progress)
+      }, (err) => console.log(err),
+        () => {
+        getDownloadURL(uploadTask.snapshot.ref).then(url => console.log(url))
+          })
+
+    }
+    
+
+    const post = (e) => {
+        e.preventDefault()
+        let text = document.getElementById('postText').value;
+        const file = e.target[0].files[0];
+        uploadFiles(file)
+        let image = `https://firebasestorage.googleapis.com/v0/b/mtt-social-4cf10.appspot.com/o/post_image%2F${file.name}?alt=media`;
+        const newPost = {
+            name: userI.fName + " " + userI.lName,
+            image: image,
+            description: text,
+            postId: userI.username,
+            profilePic: userI.image,
+            username: userI.username,
+        }
+        axios.post('http://localhost:5000/post', newPost).then(res => console.log(res.data))
+        //document.getElementById('alerts').innerHTML = "Refresh The Page To See Your Post!"
+    }
+
+
+    const [posts, setPosts] = useState([{
+        _id: '',
+        name: '',
+        image: '',
+        date: '',
+        description: '',
+        postId: '',
+        profilePic: '',
+        username: '',
+    }])
+
+
+    useEffect(() => {
+        axios.post('http://localhost:5000/getPost').then(res => setPosts(res.data))
+    })
     return (
         <>
 
@@ -96,23 +150,27 @@ export default function Index() {
             </ul>
         </div>
         <div>
-            <div className="post">
+            <form onSubmit={post}  className="post">
             <h2>What's Goin' On, {userI.username}?</h2>
-            <h6>Share something</h6>
-            <input type="text" className='input_post' placeholder='  Type Here...'/>
             <h6>Choose An Image:</h6>
             <input type="file" accept="image/*"/>
-            <button className='button_post'>Post</button>
-            </div>
+            <h6>Share something</h6>
+            <input type="text" id="postText" className='input_post' placeholder='  Type Here...'/>
+                        <button type="submit" className='button_post'>Post</button>
+                        <span id="alerts"></span>
+            </form>
             <div className='posts'>
-            {data.data.map((data) => (
-                <div key={data._id} className='card'>
+            {posts.map((post) => (
+                <div key={post._id} className='card'>
                     <div className='person'>
-                        <div className="author">From: {data.from}</div>
-                        <div className="date">On: {data.date}</div>
+                        <Link to={`/${post.username}`} className='profile_img_name'>
+                        <img src={post.profilePic} alt={post.username} className="profile_Pic"/>
+                        <div className="author">From: {post.name}</div>
+                        </Link>
+                        <div className="date">On: {post.date}</div>
                     </div>
-                    <img className="imgPost" src={data.image} alt={data.name} />
-                    <p>{data.description}</p>
+                    <img className="imgPost" src={post.image} alt={post.name} />
+                    <p>{post.description}</p>
                     <div className='person'>
                     <div className='postButton'><FontAwesomeIcon icon={faThumbsUp} /> I like this</div>
                     <div className='postButton'><FontAwesomeIcon icon={faThumbsDown} /> Not For Me</div>

@@ -2,11 +2,42 @@
 
 const express = require('express');
 const User = require('../models/userModel.js')
+const Post = require('../models/postModel.js')
 const expressAsyncHandler = require('express-async-handler')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 
 const userRouter = express.Router();
+
+userRouter.route('/post').post((req, res) => {
+    
+    var today = new Date();
+    var day = String(today.getDate()).padStart(2, '0');
+    var month = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var year = today.getFullYear();
+
+    const name = req.body.name;
+    const date = day + "/" + month + "/" + year;
+    const image = req.body.image;
+    const description = req.body.description;
+    const postId = req.body.postId;
+    const profilePic = req.body.profilePic;
+    const username = req.body.username;
+
+    
+
+    const newPost = new Post({
+        name,
+        date,
+        image,
+        description,
+        postId,
+        profilePic,
+        username,
+    })
+
+    newPost.save()
+})
 
 
 userRouter.route('/create').post((req, res) => {
@@ -133,6 +164,24 @@ userRouter.post('/fetchUser', expressAsyncHandler(async (req, res) => {
         res.status(401).send("Can't Find User")
     }
 }))
+
+userRouter.post('/getPost', expressAsyncHandler(async (req, res) => {
+    Post.find().then(posts => res.json(posts))
+
+    // if (post) {
+    //         res.send({
+    //             name: post.name,
+    //             date: post.date,
+    //             image: post.image,
+    //             description:post.description,
+    //             postId: post.postId,
+    //             profilePic: post.profilePic,
+    //             username: post.username,
+    //         })
+    //         return;
+    // }
+}))
+
 
 
 

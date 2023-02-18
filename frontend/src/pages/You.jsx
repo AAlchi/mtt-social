@@ -5,6 +5,7 @@ import axios from 'axios';
 
 
 export default function You() {
+    window.scrollTo(0, 0)
     const userI = JSON.parse(localStorage.getItem('USER'))
     const { search } = useLocation();
     const redirectInUrl = new URLSearchParams(search).get('redirect');
