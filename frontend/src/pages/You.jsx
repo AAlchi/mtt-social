@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import './style.css';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+
+
 
 
 export default function You() {
-    window.scrollTo(0, 0)
     const userI = JSON.parse(localStorage.getItem('USER'))
     const { search } = useLocation();
     const redirectInUrl = new URLSearchParams(search).get('redirect');
@@ -100,6 +103,23 @@ export default function You() {
     })
 
     
+      const [posts, setPosts] = useState([{
+        _id: '',
+        name: '',
+        image: '',
+        date: '',
+        description: '',
+        postId: '',
+        profilePic: '',
+        username: '',
+    }])
+
+    useEffect(() => {
+        
+        axios.post('http://localhost:5000/getUserPost', {
+            username: username
+        }).then(res => setPosts(res.data))
+    })
 
     return (
         <>
@@ -131,6 +151,7 @@ export default function You() {
         </div>
         <div>
            
+<div className='youstyle'>
 
           <div className="you">
                         <div className="banner">
@@ -144,8 +165,31 @@ export default function You() {
                 <button>Report</button>
                 </div>
             </div>
-          </div>
-
+                    </div>
+                    
+                     <div className='posts'>
+            {posts.map((post) => (
+                <div key={post._id} className='card'>
+                    <div className='person'>
+                        <Link to={`/${post.username}`} className='profile_img_name'>
+                        <img src={post.profilePic} alt={post.username} className="profile_Pic"/>
+                        <div className="author">From: {post.name}</div>
+                        </Link>
+                        <div className="date">On: {post.date}</div>
+                    </div>
+                    <img className="imgPost" src={post.image} alt={post.name} />
+                    <p>{post.description}</p>
+                    <div className='person'>
+                    <div className='postButton'><FontAwesomeIcon icon={faThumbsUp} /> I like this</div>
+                    <div className='postButton'><FontAwesomeIcon icon={faThumbsDown} /> Not For Me</div>
+                    </div>
+                </div>
+            ))}    
+            
+           
+            
+            </div>
+</div>
 
 
         </div>

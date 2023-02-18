@@ -3,7 +3,6 @@ import './style.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 
-
 export default function Account() {
     const userI = JSON.parse(localStorage.getItem('USER'))
     const { search } = useLocation();
@@ -184,7 +183,9 @@ export default function Account() {
              
               <span>{errors}</span>
               <button type="submit">Update Profile</button>
-          </form>
+            </form>
+            
+            
 
 
 

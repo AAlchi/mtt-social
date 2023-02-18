@@ -182,6 +182,31 @@ userRouter.post('/getPost', expressAsyncHandler(async (req, res) => {
     // }
 }))
 
+userRouter.post('/getUserPost', expressAsyncHandler((req, res) => {
+        Post.find({username: req.body.username}).then(posts => res.json(posts))
+
+    // if (post) {
+    //         res.send({
+    //             _id: user._id,
+    //             fName: user.fName,
+    //             lName: user.lName,
+    //             email: user.email,
+    //             username: user.username,
+    //             address: user.address,
+    //             zipCode: user.zipCode,
+    //             dob: user.dob,
+    //             password: user.password,
+    //             image: user.image,
+    //             token: generateToken(user),
+    //         })
+    //         return;
+        
+    // }
+
+
+    
+}))
+
 
 
 

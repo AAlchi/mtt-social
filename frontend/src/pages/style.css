@@ -279,6 +279,12 @@
     cursor: pointer;
 }
 
+.youstyle {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .you_name {
     font-size: 18px;
     margin-right: 20px;
