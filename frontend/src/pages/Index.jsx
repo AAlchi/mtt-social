@@ -3,6 +3,7 @@ import './style.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { useLocation, useNavigate } from 'react-router-dom';
+import data from './data';
 
 
 export default function Index() {
@@ -104,55 +105,22 @@ export default function Index() {
             <button className='button_post'>Post</button>
             </div>
             <div className='posts'>
-                
-            <div className='card'>
+            {data.data.map((data) => (
+                <div key={data._id} className='card'>
                     <div className='person'>
-                    <div className="author">From: Jerry M. Michal</div>
-                    <div className="date">On: Oct, 15, 2023</div>
+                        <div className="author">From: {data.from}</div>
+                        <div className="date">On: {data.date}</div>
                     </div>
-                    <img className="imgPost" src="https://th.bing.com/th/id/R.892bb645c09c766efcc5bc4d0c93094a?rik=slmcvUaa5yToAw&riu=http%3a%2f%2fwww.wallpapers13.com%2fwp-content%2fuploads%2f2015%2f12%2fNature-Lake-Bled.-Desktop-background-image.jpg&ehk=c2raFC95S12P3OL0%2fwdM60ro3oUxsSEajkuGEN%2fsjbo%3d&risl=1&pid=ImgRaw&r=0" alt="sample"/>
-                    <p>Check out this beautiful place I went to over the summer! Very cool!</p>
-                    <div className='person'>
-                    <div className='postButton'><FontAwesomeIcon icon={faThumbsUp} /> I like this</div>
-                    <div className='postButton'><FontAwesomeIcon icon={faThumbsDown} /> Not For Me</div>
-                    </div>
-            </div>
-            <div className='card'>
-                    <div className='person'>
-                    <div className="author">From : Jerry M. Michal</div>
-                    <div className="date">On: Oct, 15, 2023</div>
-                    </div>
-                    <img className="imgPost" src="https://th.bing.com/th/id/R.892bb645c09c766efcc5bc4d0c93094a?rik=slmcvUaa5yToAw&riu=http%3a%2f%2fwww.wallpapers13.com%2fwp-content%2fuploads%2f2015%2f12%2fNature-Lake-Bled.-Desktop-background-image.jpg&ehk=c2raFC95S12P3OL0%2fwdM60ro3oUxsSEajkuGEN%2fsjbo%3d&risl=1&pid=ImgRaw&r=0" alt="sample" />
-                    <p>Check out this beautiful place I went to over the summer! Very cool!</p>
+                    <img className="imgPost" src={data.image} alt={data.name} />
+                    <p>{data.description}</p>
                     <div className='person'>
                     <div className='postButton'><FontAwesomeIcon icon={faThumbsUp} /> I like this</div>
                     <div className='postButton'><FontAwesomeIcon icon={faThumbsDown} /> Not For Me</div>
                     </div>
-            </div>
-            <div className='card'>
-                    <div className='person'>
-                    <div className="author">From : Jerry M. Michal</div>
-                    <div className="date">On: Oct, 15, 2023</div>
-                    </div>
-                    <img className="imgPost" src="https://th.bing.com/th/id/R.892bb645c09c766efcc5bc4d0c93094a?rik=slmcvUaa5yToAw&riu=http%3a%2f%2fwww.wallpapers13.com%2fwp-content%2fuploads%2f2015%2f12%2fNature-Lake-Bled.-Desktop-background-image.jpg&ehk=c2raFC95S12P3OL0%2fwdM60ro3oUxsSEajkuGEN%2fsjbo%3d&risl=1&pid=ImgRaw&r=0" alt="sample" />
-                    <p>Check out this beautiful place I went to over the summer! Very cool!</p>
-                    <div className='person'>
-                    <div className='postButton'><FontAwesomeIcon icon={faThumbsUp} /> I like this</div>
-                    <div className='postButton'><FontAwesomeIcon icon={faThumbsDown} /> Not For Me</div>
-                    </div>
-            </div>
-            <div className='card'>
-                    <div className='person'>
-                    <div className="author">From : Jerry M. Michal</div>
-                    <div className="date">On: Oct, 15, 2023</div>
-                    </div>
-                    <img className="imgPost" src="https://th.bing.com/th/id/R.892bb645c09c766efcc5bc4d0c93094a?rik=slmcvUaa5yToAw&riu=http%3a%2f%2fwww.wallpapers13.com%2fwp-content%2fuploads%2f2015%2f12%2fNature-Lake-Bled.-Desktop-background-image.jpg&ehk=c2raFC95S12P3OL0%2fwdM60ro3oUxsSEajkuGEN%2fsjbo%3d&risl=1&pid=ImgRaw&r=0" alt="sample" />
-                    <p>Check out this beautiful place I went to over the summer! Very cool!</p>
-                    <div className='person'>
-                    <div className='postButton'><FontAwesomeIcon icon={faThumbsUp} /> I like this</div>
-                    <div className='postButton'><FontAwesomeIcon icon={faThumbsDown} /> Not For Me</div>
-                    </div>
-            </div>
+                </div>
+            ))}    
+            
+           
             
             </div>
         </div>
