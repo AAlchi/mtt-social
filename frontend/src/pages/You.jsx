@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
-
+import emailjs from 'emailjs-com'
 
 
 
@@ -125,22 +125,34 @@ export default function You() {
         
     }
 
+    const phone = () => {
+        let phone = document.getElementById('sidebar');
+
+        if (phone.style.display === "flex") {
+            phone.style.display = "none";
+        } else {
+            phone.style.display = "flex";
+        }
+    }
+
+   var width  = document.documentElement.clientWidth;
+    var height = document.documentElement.clientHeight;
+
     return (
         <>
 
 <div className="title">
             <center><h1>MTT SOCIAL</h1></center>
-        </div>
+            </div>
+             <div onClick={phone} className="phone">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
     <div className='index'>
       
-        <div onClick={phoneThing} className="phone_thing">
-        <div>
-            <div></div>
-            <div></div>
-            <div></div>
-            </div>
-        </div>
-        <div id="sidebar" className="sideBar">
+       {width < 700 ? (
+                       <div id="sidebar" className="sideBar">
             <ul>
                 <h2>Options</h2>
                 <li onClick={home}>Home</li>
@@ -151,8 +163,28 @@ export default function You() {
                 <li onClick={following}>Following</li>
                 <li onClick={followers}>Followers</li>
                 <li onClick={logout}>Log Out</li>
+                <h2>Friends</h2>
+                <li>Joe Biden</li>
+                <li>Camala Harris</li>
+                <li>Jeff Bezos</li>
+                <li>Elon Musk</li>
+                <li>Bill Gates</li>
+                <li>Ali Ibrahim</li>
+                <li>ARKS101</li>
+                <li>Joe Biden</li>
+                <li>Camala Harris</li>
+                <li>Jeff Bezos</li>
+                <li>Elon Musk</li>
+                <li>Bill Gates</li>
+                <li>Ali Ibrahim</li>
+                <li>ARKS101</li>
             </ul>
         </div>
+
+            ) : (
+                <div></div>       
+            )} 
+       
         <div>
            
 <div className='youstyle'>
@@ -161,9 +193,11 @@ export default function You() {
                         <div className="banner">
                             <img src={image} alt={fName} /></div>
                 <div className="you_content">
+                <div>
                 <div className="you_name">Username: {username}</div> 
                 <div className="you_name">Name: {name}</div> 
                 <div className="you_name">Born On: {dob.substring(0, dob.length - 14)}</div>
+              </div>
                 <div>
                 <button>Add Friend</button>
                 <button>Report</button>
@@ -198,9 +232,20 @@ export default function You() {
 </div>
 
 
-        </div>
-        <div className="rightBar">
+                </div>
+                
+                 {width > 700 ? (
+                       <div id="sidebar" className="sideBar">
             <ul>
+                <h2>Options</h2>
+                <li onClick={home}>Home</li>
+                <li onClick={you}>Your Page</li>
+                <li onClick={like}>Liked Posts</li>
+                <li onClick={account}>Account</li>
+                <li onClick={friends}>Freinds</li>
+                <li onClick={following}>Following</li>
+                <li onClick={followers}>Followers</li>
+                <li onClick={logout}>Log Out</li>
                 <h2>Friends</h2>
                 <li>Joe Biden</li>
                 <li>Camala Harris</li>
@@ -218,6 +263,11 @@ export default function You() {
                 <li>ARKS101</li>
             </ul>
         </div>
+
+            ) : (
+                <div></div>       
+            )} 
+      
     </div>
     </>
   )

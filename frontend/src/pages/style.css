@@ -1,7 +1,12 @@
 .index {
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    gap: 1%;
+}
+
+body {
+    background-color: #e1e1df;
 }
 
 .profile_img_name {
@@ -17,20 +22,122 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    border: 1px solid black;
+    border: none;
 }
 
 .sideBar {
-    width: 200px;
-    height: 100%;
     display: flex;
+    width: 250px;
+    background-color: white;
+    border-radius: 20px;
+    justify-content: space-evenly;
+    gap: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: 700px;
+    position: sticky;
+    top: 67px;
+}
+
+.sideBar > ul {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+    align-items: center;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.sideBar > ul:hover {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.sideBar > ul > li {
+    font-size: 17px;
+    list-style: none;
+    width: 90%;
+    padding: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.sideBar > ul > li:hover {
+    background-color: gray;
+}
+
+
+.phone {
+    display: none;
+    width: 100%;
+    height: 50px;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-top: 30px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    padding-bottom: 5px;
-    background-color: #E1E1DF;
+    gap: 1px;
+}
+
+.phone > div {
+    display: flex;
+    width: 100px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50px;
+}
+
+.info {
+    position: sticky;
+    top: 67px;
+    margin-top: 10px;
+    width: 40%;
+    height: 500px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.info > img {
+    width: 80%;
+    border-radius: 20px;
+    border: 1px solid black;
+    margin-top: 2%;
+}
+
+@media (max-width: 700px) {
+    .title {
+        position: relative;
+        top: 0;
+    }
+    .info {
+        position: relative;
+        top: 0;
+        width: 100%;
+        z-index: -1;
+    }
+    .phone {
+    display: flex;
+    }
+    
+    .index {
+        gap: 10%;
+        flex-direction: column;
+    }
+
+    .sideBar > ul {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .sideBar {
+        display: none;
+        width: 100%;
+        border-radius: 20px;
+    }
 }
 
 
@@ -38,33 +145,15 @@
     display: flex;
     flex-direction: column;
     gap: 50px;
+    overflow-y: visible;
 }
 
-.sideBar > ul {
-    width: 200px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-direction: column;
-    gap: 30px;
-}
-
-.sideBar > ul > li {
-    list-style: none;
-    border-radius: 10px;
-    width: 90%;
-    height: 50px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: white;
-}
 
 .title {
+    position: sticky;
+    top: 0;
     width: 100%;
-    background-color: #E1E1DF;
+    background-color: #e1e1df;
     align-items: center;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -72,21 +161,8 @@
 }
 
 
-.rightBar {
-    width: 200px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 30px;
-    background-color: #E1E1DF;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    padding-bottom: 5px;
-}
-
 .imgPost {
-    width: 700px;
+    width: 100%;
     height: 350px;
 }
 
@@ -99,7 +175,7 @@
 .postButton {
     width: 135px;
     height: 50px;
-    background-color: white;
+    background-color: #e1e1df;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -108,78 +184,32 @@
 }
 
 .card {
-    width: 700px;
-    height: 500px;
-    border: 1px solid black;
-    border-radius: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    background-color: #E1E1DF;
-}
-
-.rightBar > ul {
-    width: 200px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-direction: column;
-    gap: 30px;
-}
-
-.rightBar > ul > li {
-    list-style: none;
-    border-radius: 10px;
     width: 90%;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: white;
-    cursor: pointer;
-}
-
-.phone_thing {
-    display: none;
-    width: 100%;
-    align-items: center;
-    justify-content: end;
-    height: 40px;
-    cursor: pointer;
-}
-
-.phone_thing > div {
+    height: 600px;
     display: flex;
     flex-direction: column;
-    gap: 1px;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: white;
+    padding: 5%;
+    border-radius: 20px;
+    max-width: 600px;
 }
 
-.phone_thing > div > div {
-    display: flex;
-    width: 100px;
-    height: 10px;
-    gap: 5px;
-    background-color: black;
-    border-radius: 10px;
-    margin-right: 10px;
-}
+
 
 .post {
-    border: 1px solid black;
+    border: none;
     margin-top: 10px;
     margin-bottom: 10px;
     display: flex;
     height: 300px;
     justify-content: space-evenly;
     flex-direction: column;
-    padding-left: 20px;
     border-radius: 20px;
-    background-color: #E1E1DF;
+    background-color: white;
+    width: 90%;
+    padding: 5%;
 }
 
 .profile_picture {
@@ -200,7 +230,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    border: 1px solid black
+    border: none
 }
 
 .display > img {
@@ -234,56 +264,64 @@
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    border: 1px solid black;
+    border: none;
     margin-top: 200px;
+    border: 1px solid black;
 }
 
 .banner {
     display: flex;
-    width: 800px;
+    width: 100%;
     height: 200px;
-    background-color: #E1E1DF;
+    background-color: white;
     border-radius: 20px;
     align-items: center;
     justify-content: space-evenly;
-    z-index: 1;
+    z-index: -1;
 }
 
 .you_content {
     display: flex;
-    width: 800px;
+    width: 100%;
     margin-top: 20px;
     align-items: center;
     justify-content: space-evenly;
     gap: 30px;
     flex-wrap: wrap;
-    background-color: #E1E1DF;
+    background-color: white;
     border-radius: 20px;
     padding-top: 100px;
     padding-bottom: 100px;
+    z-index: -2;
+    flex-direction: column;
+}
+
+.you {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    flex-direction: column;
 }
 
 .you_content > div {
     display: flex;
     gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .you_content > div > button {
     width: 200px;
     height: 70px;
     border: none;
-    background-color: white;
+    background-color: #e1e1df;
     color: black;
     font-weight: bold;
     border-radius: 20px;
     cursor: pointer;
+    flex-wrap: wrap;
 }
 
-.youstyle {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
 
 .you_name {
     font-size: 18px;
@@ -299,7 +337,7 @@
 .button_post {
     width: 90%;
     border: none;
-    background-color: white;
+    background-color: #e1e1df;
     height: 40px;
     cursor: pointer;
 }
@@ -308,7 +346,7 @@
     display: flex;
     flex-direction: column;
     width: 700px;
-    background-color: #E1E1DF;
+    background-color: #e1e1df;
     border-radius: 20px;
     align-items: center;
     padding-top: 20px;
@@ -324,7 +362,7 @@
 .account_main > button {
     width: 200px;
     height: 25px;
-    background-color: white;
+    background-color: #e1e1df;
     cursor: pointer;
 }
 
@@ -333,236 +371,11 @@
 }
 
 
-@media (max-width: 1200px) {
-    .card {
-        height: 600px;
-    }
 
-    .imgPost {
-        width: 700px;
-        height: 400px;
-    }
-}
-
-@media (max-width: 1000px) {
- 
-    .phone_thing {
-        display: flex;
-    }
-    .index {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-    .rightBar {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-        padding-top: 30px;
-        background-color: #E1E1DF;
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
-        padding-bottom: 5px;
-    }
-    .rightBar > ul {
-        width: 100%;
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-
-    .sideBar > ul {
-        width: 100%;
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-
-    .sideBar {
-        width: 100%;
-        height: 100%;
-        display: none;
-        align-items: center;
-        justify-content: space-evenly;
-        padding-top: 30px;
-        background-color: #E1E1DF;
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
-        padding-bottom: 5px;
-    }
-
-    .posts {
-        align-items: center;
-        width: 100%;
-    }
-    .card {
-        width: 700px;
-        height: 600px;
-    }
-    .imgPost {
-        width: 100%;
-        height: 400px;
-    }
-}
-
-@media (max-width: 850px) {
-    .banner {
-        width: 650px;
-    }
-    .you_content {
-        width: 650px;
-    }
-}
-
-@media (max-width: 800px) {
-    .card {
-        width: 700px;
-        height: 600px;
-        padding-top: 10px;
-        padding-left: 10px;
-        padding-bottom: 10px;
-        padding-right: 10px;
-    }
-    .imgPost {
-        width: 700px;
-        height: 400px;
-        border-radius: 20px;
-    }
-}
-
-@media (max-width: 740px) {
-
-    .card {
-        width: 650px;
-        height: 600px;
-        padding-top: 10px;
-        padding-left: 10px;
-        padding-bottom: 10px;
-        padding-right: 10px;
-    }
-    .imgPost {
-        width: 650px;
-        height: 400px;
-        border-radius: 20px;
-    }
-}
-
-
-@media (max-width: 700px) {
-    .card {
-        width: 650px;
-        height: 600px;
-        padding-top: 10px;
-        padding-left: 10px;
-        padding-bottom: 10px;
-        padding-right: 10px;
-    }
-    .imgPost {
-        width: 650px;
-        height: 400px;
-        border-radius: 20px;
-    }
-}
-
-@media (max-width: 680px) {
-    .banner {
-        width: 500px;
-    }
-    .you_content {
-        width: 500px
-    }
-    .card {
-        width: 600px;
-        height: 600px;
-    }
-    .imgPost {
-        width: 600px;
-        height: 400px
-    }
-}
-
-@media (max-width: 650px) {
-    .card {
-        width: 500px;
-        height: 500px;
-    }
-    .imgPost {
-        width: 500px;
-        height: 300px;
-    }
-}
-
-@media (max-width: 530px) {
-    .card {
-        width: 350px;
-    }
-    .imgPost {
-        width: 350px;
-    }
-    .banner {
-        width: 300px;
-    }
-    .you_content {
-        width: 300px;
-    }
-
-    .you_content > div {
-        gap: 10px
-    }
-
-    .you_content > div > button {
-        width: 130px;
-    }
-}
-
-
-
-@media (max-width: 400px) {
-    .card {
-        width: 300px;
-        height: 450px;
-        padding-top: 10px;
-        padding-left: 10px;
-        padding-bottom: 10px;
-        padding-right: 10px;
-    }
-    .imgPost {
-        width: 300px;
-        height: 250px;
-        border-radius: 20px;
-    }
-}
-
-@media (max-width: 340px) {
-    .card {
-        width: 250px;
-        height: 400px;
-        padding-top: 10px;
-        padding-left: 10px;
-        padding-bottom: 10px;
-        padding-right: 10px;
-    }
-    .imgPost {
-        width: 250px;
-        height: 200px;
-        border-radius: 20px;
-    }
-}
-
-@media (max-width: 300px) {
-       .banner {
-        width: 250px;
-    }
-    .you_content {
-        width: 250px;
-    }
-
-    .you_content > div {
-        gap: 10px
-    }
-
-    .you_content > div > button {
-        width: 100px;
-    }
+.youstyle {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+    justify-content: center;
 }

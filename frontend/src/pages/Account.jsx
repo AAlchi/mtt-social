@@ -21,8 +21,8 @@ export default function Account() {
         navigate('/account')
     }
   
-    const feed = () => {
-        navigate('/feed')
+    const like = () => {
+        navigate('/like')
     }
   
     const following = () => {
@@ -111,6 +111,19 @@ export default function Account() {
         } else {
             side.style.display = "flex";
         }
+  }
+  
+     var width  = document.documentElement.clientWidth;
+    var height = document.documentElement.clientHeight;
+
+    const phone = () => {
+        let phone = document.getElementById('sidebar');
+
+        if (phone.style.display === "flex") {
+            phone.style.display = "none";
+        } else {
+            phone.style.display = "flex";
+        }
     }
     return (
         <div className='account'>
@@ -118,28 +131,46 @@ export default function Account() {
 <div className="title">
             <center><h1>MTT SOCIAL</h1></center>
         </div>
+         <div onClick={phone} className="phone">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
     <div className='index'>
       
-        <div onClick={phoneThing} className="phone_thing">
-        <div>
-            <div></div>
-            <div></div>
-            <div></div>
-            </div>
-        </div>
-        <div id="sidebar" className="sideBar">
+     {width < 700 ? (
+                       <div id="sidebar" className="sideBar">
             <ul>
                 <h2>Options</h2>
                 <li onClick={home}>Home</li>
                 <li onClick={you}>Your Page</li>
-                <li onClick={feed}>Liked Posts</li>
+                <li onClick={like}>Liked Posts</li>
                 <li onClick={account}>Account</li>
                 <li onClick={friends}>Freinds</li>
                 <li onClick={following}>Following</li>
                 <li onClick={followers}>Followers</li>
                 <li onClick={logout}>Log Out</li>
+                <h2>Friends</h2>
+                <li>Joe Biden</li>
+                <li>Camala Harris</li>
+                <li>Jeff Bezos</li>
+                <li>Elon Musk</li>
+                <li>Bill Gates</li>
+                <li>Ali Ibrahim</li>
+                <li>ARKS101</li>
+                <li>Joe Biden</li>
+                <li>Camala Harris</li>
+                <li>Jeff Bezos</li>
+                <li>Elon Musk</li>
+                <li>Bill Gates</li>
+                <li>Ali Ibrahim</li>
+                <li>ARKS101</li>
             </ul>
         </div>
+
+            ) : (
+                <div></div>       
+            )} 
         <div>
            
 
@@ -189,9 +220,20 @@ export default function Account() {
 
 
 
-        </div>
-        <div className="rightBar">
+          </div>
+          
+          {width > 700 ? (
+                       <div id="sidebar" className="sideBar">
             <ul>
+                <h2>Options</h2>
+                <li onClick={home}>Home</li>
+                <li onClick={you}>Your Page</li>
+                <li onClick={like}>Liked Posts</li>
+                <li onClick={account}>Account</li>
+                <li onClick={friends}>Freinds</li>
+                <li onClick={following}>Following</li>
+                <li onClick={followers}>Followers</li>
+                <li onClick={logout}>Log Out</li>
                 <h2>Friends</h2>
                 <li>Joe Biden</li>
                 <li>Camala Harris</li>
@@ -209,6 +251,11 @@ export default function Account() {
                 <li>ARKS101</li>
             </ul>
         </div>
+
+            ) : (
+                <div></div>       
+            )} 
+       
     </div>
     </div>
   )

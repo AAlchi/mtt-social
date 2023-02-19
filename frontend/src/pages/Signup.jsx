@@ -88,7 +88,9 @@ function Signup() {
       }
       axios.post('http://localhost:5000/create', newUser).then(res => JSON.stringify(localStorage.setItem('USER_EXISTS', res.data)))
 
+
       navigate('/signin')
+
 
      }
     document.getElementById('error').innerHTML = errors; 

@@ -10,7 +10,8 @@ const userSchema = new mongoose.Schema(
     zipCode: { type: String, required: true },
     dob: { type: Date, required: true },
     password: { type: String, required: true },
-    image: {type: String, required: true}
+    image: { type: String, required: true },
+    friends: { type: Array }
   },
   {
     timestamps: true,
