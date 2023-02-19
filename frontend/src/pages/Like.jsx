@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import './style.css';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Redirect from '../components/Redirect';
 
 
 export default function Like() {
@@ -70,7 +69,6 @@ export default function Like() {
 
     return (
         <>
-<Redirect />
 <div className="title">
             <center><h1>MTT SOCIAL</h1></center>
             </div>

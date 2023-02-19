@@ -5,7 +5,6 @@ import bcrypt from 'bcryptjs';
 import Header from '../components/Header';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { storage } from './firebase';
-import Redirect from '../components/Redirect';
 
 
 function Signup() {
@@ -101,7 +100,6 @@ function Signup() {
 
   return (
     <>
-      <Redirect />
     <Header />
     <div className='signup'>
         <form onSubmit={handleSubmit} className="signup_content">

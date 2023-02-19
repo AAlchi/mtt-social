@@ -2,7 +2,6 @@ import Axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
-import Redirect from '../components/Redirect';
 
 
 function Signin() {
@@ -59,7 +58,6 @@ function Signin() {
  
   return (
     <>
-      <Redirect />
               <Header />
 
     <div className='signin'>

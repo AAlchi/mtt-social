@@ -3,11 +3,9 @@ import './style.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import data from './data';
-import axios from 'axios';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { storage } from './firebase';
-import Redirect from '../components/Redirect';
+import axios from 'axios';
 
 
 export default function Index() {
@@ -140,7 +138,6 @@ export default function Index() {
     let name = userI.fName + " " + userI.lName;
     return (
         <>
-<Redirect />
 <div className="title">
                 <center><h1>MTT SOCIAL</h1></center>
                      <div onClick={phone} className="phone">

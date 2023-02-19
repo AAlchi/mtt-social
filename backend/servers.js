@@ -4,6 +4,7 @@ const dotenv = require('dotenv')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const User = require('./models/userModel.js')
+const path = require('path');
 
 app.use(cors());
 dotenv.config();
@@ -23,7 +24,6 @@ app.use(express.urlencoded({ extended: true }));
 const userRouter = require('./routes/userRoutes.js')
 
 app.use('/', userRouter);
-
 
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });

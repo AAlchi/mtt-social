@@ -103,6 +103,7 @@ body {
 
 .info > img {
     width: 80%;
+    max-height: 40%;
     border-radius: 20px;
     border: 1px solid black;
     margin-top: 2%;

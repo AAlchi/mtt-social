@@ -4,8 +4,6 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
-import emailjs from 'emailjs-com'
-import Redirect from '../components/Redirect';
 
 
 
@@ -84,7 +82,7 @@ export default function You() {
     useEffect(() => {
         const data = async (req, res) => {
             try {
-                await axios.post('/fetchUser', {
+                await axios.post('https://socialserver.derarchitecture.com/fetchUser', {
                     username: usernames,
                 }).then(res => (
                     // eslint-disable-next-line no-sequences
@@ -141,7 +139,6 @@ export default function You() {
 
     return (
         <>
-            <Redirect />
 
 <div className="title">
             <center><h1>MTT SOCIAL</h1></center>

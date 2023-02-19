@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import './style.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Axios from 'axios';
-import Redirect from '../components/Redirect';
 
 export default function Account() {
     const userI = JSON.parse(localStorage.getItem('USER'))
@@ -128,7 +127,6 @@ export default function Account() {
     }
     return (
         <div className='account'>
-          <Redirect />
 <div className="title">
             <center><h1>MTT SOCIAL</h1></center>
         </div>
