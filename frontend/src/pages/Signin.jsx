@@ -2,6 +2,7 @@ import Axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
+import Redirect from '../components/Redirect';
 
 
 function Signin() {
@@ -37,7 +38,7 @@ function Signin() {
       errors = "Empty Inputs";
     } else {
       try {
-        await Axios.post('http://localhost:5000/signin', {
+        await Axios.post('/signin', {
           email,
           password
         }).then(res => localStorage.setItem('USER', JSON.stringify(res.data)))
@@ -58,6 +59,7 @@ function Signin() {
  
   return (
     <>
+      <Redirect />
               <Header />
 
     <div className='signin'>

@@ -10,12 +10,12 @@ import Index from './pages/Index';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 import You from './pages/You';
+import Redirect from './components/Redirect';
 
 function App() {
 
 
   
-
 
   return (
     <BrowserRouter>
@@ -29,7 +29,8 @@ function App() {
       <Route path="/account" element={<Account />}/>
       <Route path="/friends" element={<Friends />}/>
       <Route path="/following" element={<Following />}/>
-      <Route path="/followers" element={<Followers />}/>
+        <Route path="/followers" element={<Followers />} />
+        <Route path="redirect" element={<Redirect />} />
     </Routes>
     </BrowserRouter>
   )

@@ -5,6 +5,7 @@ import bcrypt from 'bcryptjs';
 import Header from '../components/Header';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { storage } from './firebase';
+import Redirect from '../components/Redirect';
 
 
 function Signup() {
@@ -86,7 +87,7 @@ function Signup() {
         password: bcrypt.hashSync(password),
         image: image,
       }
-      axios.post('http://localhost:5000/create', newUser).then(res => JSON.stringify(localStorage.setItem('USER_EXISTS', res.data)))
+      axios.post('/create', newUser).then(res => JSON.stringify(localStorage.setItem('USER_EXISTS', res.data)))
 
 
       navigate('/signin')
@@ -100,6 +101,7 @@ function Signup() {
 
   return (
     <>
+      <Redirect />
     <Header />
     <div className='signup'>
         <form onSubmit={handleSubmit} className="signup_content">

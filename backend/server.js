@@ -22,7 +22,8 @@ app.use(express.urlencoded({ extended: true }));
 
 const userRouter = require('./routes/userRoutes.js')
 
-app.use('/', userRouter)
+app.use('/', userRouter);
+
 
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });

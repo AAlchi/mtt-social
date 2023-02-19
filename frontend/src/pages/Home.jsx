@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Header from '../components/Header';
+import Redirect from '../components/Redirect';
 
 function Home() {
   const { search } = useLocation();
@@ -24,6 +25,7 @@ function Home() {
 
   return (
     <>
+      <Redirect />
     <Header />
 
     <div className="home">

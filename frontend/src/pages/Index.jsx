@@ -7,6 +7,7 @@ import data from './data';
 import axios from 'axios';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { storage } from './firebase';
+import Redirect from '../components/Redirect';
 
 
 export default function Index() {
@@ -101,7 +102,7 @@ export default function Index() {
             profilePic: userI.image,
             username: userI.username,
         }
-        axios.post('http://localhost:5000/post', newPost).then(res => console.log(res.data))
+        axios.post('/post', newPost).then(res => console.log(res.data))
         //document.getElementById('alerts').innerHTML = "Refresh The Page To See Your Post!"
     }
 
@@ -119,7 +120,7 @@ export default function Index() {
 
 
     useEffect(() => {
-        axios.post('http://localhost:5000/getPost').then(res => setPosts(res.data))
+        axios.post('/getPost').then(res => setPosts(res.data))
     })
 
 
@@ -139,7 +140,7 @@ export default function Index() {
     let name = userI.fName + " " + userI.lName;
     return (
         <>
-
+<Redirect />
 <div className="title">
                 <center><h1>MTT SOCIAL</h1></center>
                      <div onClick={phone} className="phone">
