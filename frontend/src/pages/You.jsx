@@ -82,7 +82,7 @@ export default function You() {
     useEffect(() => {
         const data = async (req, res) => {
             try {
-                await axios.post('https://socialserver.derarchitecture.com/fetchUser', {
+                await axios.post('/fetchUser', {
                     username: usernames,
                 }).then(res => (
                     // eslint-disable-next-line no-sequences
