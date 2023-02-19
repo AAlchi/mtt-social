@@ -136,9 +136,9 @@ export default function Account() {
                     <div></div>
                     <div></div>
                 </div>
-    <div className='index'>
-      
-     {width < 700 ? (
+        <div className='index'>
+          
+          {width < 700 ? (
                        <div id="sidebar" className="sideBar">
             <ul>
                 <h2>Options</h2>
@@ -171,56 +171,18 @@ export default function Account() {
             ) : (
                 <div></div>       
             )} 
-        <div>
+      
+     
            
 
             <form onSubmit={updateProfile} className="account_main">
-            <h2>Your Account</h2>
-            <div className='profile_picture'>
-              <h6>Profile Picture:</h6>
-              <div class="display"><img className="profile_img" src={userI.image} alt="" /></div>
-              <button onClick={done}>Upload Picture</button>
-
-            </div>
-            <div className='thi'>
-              <input type="file" accept="image/*" id="upload" requried/>
-              <label for="upload"> </label>
-
-            </div>
-              <div>
-              <h6>First Name:</h6>
-              <input type="text" onChange={(e) => setFname(e.target.value)} value={userI.fName} required/>
-              </div>
-              <div>
-              <h6>Last Name:</h6>
-              <input type="text" onChange={(e) => setLname(e.target.value)} value={userI.lName} required/>
-              </div>
-              <div>
-              <h6>Email:</h6>
-              <input type="text" onChange={(e) => setEmail(e.target.value)} value={userI.email} required/>
-              </div>
-              <div>
-              <h6>Username:</h6>
-              <input type="text" onChange={(e) => setUsername(e.target.value)} value={userI.username} required/>
-              </div>
-              <div>
-              <h6>Address:</h6>
-              <input type="text" onChange={(e) => setAddress(e.target.value)} value={userI.address} required/>
-              </div>
-              <div>
-              <h6>Zip Code:</h6>
-              <input type="text" onChange={(e) => setZipcode(e.target.value)} value={userI.zipCode} required/>
-              </div>
-             
-              <span>{errors}</span>
-              <button type="submit">Update Profile</button>
+            <h2>Comming Soon</h2>
             </form>
             
             
 
 
 
-          </div>
           
           {width > 700 ? (
                        <div id="sidebar" className="sideBar">
