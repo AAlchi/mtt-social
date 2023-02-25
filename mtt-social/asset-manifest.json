@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/static/css/main.5b43ca19.css",
+    "main.js": "/static/js/main.34c21312.js",
+    "static/media/sign_in_up.jpg": "/static/media/sign_in_up.61cfb731d8478f57715a.jpg",
+    "static/media/farmer.jpg": "/static/media/farmer.298eca2671b384fc6b75.jpg",
+    "index.html": "/index.html",
+    "main.5b43ca19.css.map": "/static/css/main.5b43ca19.css.map",
+    "main.34c21312.js.map": "/static/js/main.34c21312.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5b43ca19.css",
+    "static/js/main.34c21312.js"
+  ]
+}
