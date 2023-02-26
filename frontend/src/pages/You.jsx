@@ -71,7 +71,7 @@ export default function You() {
         
     }
 
-    const usernames = window.location.pathname.slice(1);
+    const usernames = window.location.pathname.slice(1).replace("%20", " ");
 
     let [image, setImage] = useState({});
     let [fName, setFName] = useState('');
@@ -82,7 +82,7 @@ export default function You() {
     useEffect(() => {
         const data = async (req, res) => {
             try {
-                await axios.post('/fetchUser', {
+                await axios.post('https://mtt-social-backend.onrender.com/fetchUser', {
                     username: usernames,
                 }).then(res => (
                     // eslint-disable-next-line no-sequences
@@ -115,7 +115,7 @@ export default function You() {
 
     useEffect(() => {
         
-        axios.post('/getUserPost', {
+        axios.post('https://mtt-social-backend.onrender.com/getUserPost', {
             username: username
         }).then(res => setPosts(res.data))
     })
@@ -198,6 +198,7 @@ export default function You() {
                 <div className="you_name">Born On: {dob.substring(0, dob.length - 14)}</div>
               </div>
                 <div>
+                    
                 <button>Add Friend</button>
                 <button>Report</button>
                 </div>

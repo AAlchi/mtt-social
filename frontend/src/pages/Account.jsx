@@ -77,7 +77,7 @@ export default function Account() {
       e.preventDefault()
 
       try {
-        await Axios.post('/updateUser', {
+        await Axios.post('https://mtt-social-backend.onrender.com/updateUser', {
           id: userI._id,
           fname,
           lname,

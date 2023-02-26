@@ -1,6 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './style.css';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import axios, { all } from 'axios';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 export default function Like() {
@@ -53,6 +56,41 @@ export default function Like() {
         navigate(redirect);
       }
     }, [navigate, redirect, userI]);
+
+
+
+
+    
+    const [posts, setPosts] = useState([{
+        _id: '',
+        name: '',
+        image: '',
+        date: '',
+        description: '',
+        postId: '',
+        profilePic: '',
+        username: '',
+    }])
+
+    const [postData, setPostData] = useState([]);
+
+    useEffect(() => {
+        
+        axios.post('http://localhost:5000/getLikedPosts', {
+            email: userI.email
+        }).then(res => setPostData(res.data.likes))
+    })
+
+
+    useEffect(() => {
+        
+        axios.post('http://localhost:5000/getLikedPostsData', {
+            id: postData
+        }).then(res => setPosts(res.data))
+    })
+
+
+
   
     
    const phone = () => {
@@ -67,6 +105,8 @@ export default function Like() {
        var width  = document.documentElement.clientWidth;
     var height = document.documentElement.clientHeight;
 
+    
+    
     return (
         <>
 <div className="title">
@@ -114,17 +154,32 @@ export default function Like() {
             )} 
         
     
-        <div>
+        <div className='posts'>
+        <h2>Liked Posts</h2>
+
+            {posts.map((post) => (
+                <div key={post._id} className='card'>
+                    <div className='person'>
+                        <Link to={`/${post.username}`} className='profile_img_name'>
+                        <img src={post.profilePic} alt={post.username} className="profile_Pic"/>
+                        <div className="author">From: {post.name}</div>
+                        </Link>
+                        <div className="date">On: {post.date}</div>
+                    </div>
+                    <img className="imgPost" src={post.image} alt={post.name} />
+                    <p>{post.description}</p>
+                    <h6>{post.like} likes</h6>
+                    <div className='person'>
+                    <div onClick={() => alert()} className='postButton'><FontAwesomeIcon icon={faThumbsUp} /> Unlike</div>
+                    <div className='postButton'><FontAwesomeIcon icon={faThumbsDown} /> Not For Me</div>
+                    
+                    </div>
+                </div>
+            )).reverse()}    
+            
            
-
-                    <div className="like">
-                        <div className="weather"></div>
-                        <div className="news"></div>
-          </div>
-
-
-
-        </div>
+            
+            </div>
       
                 {width > 700 ? (
                        <div id="sidebar" className="sideBar">

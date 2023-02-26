@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/AAlchi/mtt-social/issues"
   },
-  "homepage": "https://github.com/AAlchi/mtt-social#readme"
+  "homepage": "https://github.com/AAlchi/mtt-social#readme",
+  "dependencies": {
+    "firebase": "^9.17.1"
+  }
 }

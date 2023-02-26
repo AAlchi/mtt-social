@@ -39,11 +39,13 @@ function Signup() {
     }
   }, [navigate, redirect, userI]);
 
+  let fileid = Math.random(1, 2000)
+  let idthing = `/profile_image/${fileid}`;
+
    const uploadFiles = (file) => {
      if (!file) return;
-      const storageRef = ref(storage, `/profile_image/${file.name}`)
+      const storageRef = ref(storage, idthing)
       const uploadTask = uploadBytesResumable(storageRef, file);
-
       uploadTask.on("state_changed", (snapshot) => {
         const progress = Math.round(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         setProgress(progress);
@@ -72,10 +74,9 @@ function Signup() {
 
       const file = e.target[0].files[0];
       uploadFiles(file)
-      let image = `https://firebasestorage.googleapis.com/v0/b/mtt-social-4cf10.appspot.com/o/profile_image%2F${file.name}?alt=media`;
-
+      let image = `https://firebasestorage.googleapis.com/v0/b/mtt-social-b1623.appspot.com/o/profile_image%2F${fileid}?alt=media`;
       //mongodb
-       const newUser = {
+      const newUser = {
         fName: fName,
         lName: lName,
         email: email,
@@ -86,7 +87,7 @@ function Signup() {
         password: bcrypt.hashSync(password),
         image: image,
       }
-      axios.post('/create', newUser).then(res => JSON.stringify(localStorage.setItem('USER_EXISTS', res.data)))
+      axios.post('http://localhost:5000/create', newUser).then(res => JSON.stringify(localStorage.setItem('USER_EXISTS', res.data)))
 
 
       navigate('/signin')
@@ -108,14 +109,14 @@ function Signup() {
 
           <input id="file" type="file" accept="jpg png jpeg gif"/>
      
-        <input type="text" name="firstName" onChange={e => setField('fName', e.target.value)}value={form.fName} placeholder='First Name'/>
-        <input type="text" name="lastName" onChange={e => setField('lName', e.target.value)}value={form.lName} placeholder='Last Name'/>
-        <input type="email" name="email" onChange={e => setField('email', e.target.value)} value={form.email} placeholder='Email'/>
-        <input type="text" name="username" onChange={e => setField('username', e.target.value)} value={form.username} placeholder='Username'/>
-        <input type="text" name="address" onChange={e => setField('address', e.target.value)} value={form.address} placeholder='Address'/>
-        <input type="text" name="zipCode" onChange={e => setField('zipCode', e.target.value)} value={form.zipCode} placeholder='Zipcode'/>
-        <input type="date" name="zipCode" onChange={e => setField('dob', e.target.value)} value={form.dob} placeholder='Birthday'/>
-        <input type="password" name="password" onChange={e => setField('password', e.target.value)} value={form.password} placeholder='Password'/>
+          <input type="text" name="firstName" onChange={e => setField('fName', e.target.value)}value={form.fName} placeholder='First Name'/>
+          <input type="text" name="lastName" onChange={e => setField('lName', e.target.value)}value={form.lName} placeholder='Last Name'/>
+          <input type="email" name="email" onChange={e => setField('email', e.target.value)} value={form.email} placeholder='Email'/>
+          <input type="text" name="username" onChange={e => setField('username', e.target.value)} value={form.username} placeholder='Username'/>
+          <input type="text" name="address" onChange={e => setField('address', e.target.value)} value={form.address} placeholder='Address'/>
+          <input type="text" name="zipCode" onChange={e => setField('zipCode', e.target.value)} value={form.zipCode} placeholder='Zipcode'/>
+          <input type="date" name="zipCode" onChange={e => setField('dob', e.target.value)} value={form.dob} placeholder='Birthday'/>
+          <input type="password" name="password" onChange={e => setField('password', e.target.value)} value={form.password} placeholder='Password'/>
 
         <span id="error"></span>
         <button type="submit">Sign Up</button>

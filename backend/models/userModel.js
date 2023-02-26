@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema(
     dob: { type: Date, required: true },
     password: { type: String, required: true },
     image: { type: String, required: true },
+    likes: {type: Array},
     friends: { type: Array }
   },
   {

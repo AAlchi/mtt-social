@@ -51,6 +51,7 @@ userRouter.route('/create').post((req, res) => {
     const dob = req.body.dob;
     const password = req.body.password;
     const image = req.body.image;
+    const likes = [];
 
     const newUser = new User({
         fName,
@@ -62,10 +63,13 @@ userRouter.route('/create').post((req, res) => {
         dob,
         password,
         image,
+        likes,
     })
 
     newUser.save()
 })
+
+
 
 const generateToken = (user) => {
 
@@ -121,6 +125,8 @@ userRouter.post('/updateuser', (req, res) => {
         }
     })
 })
+
+
 
 userRouter.post('/signin', expressAsyncHandler(async (req, res) => {
     const user = await User.findOne({email: req.body.email})
@@ -182,6 +188,8 @@ userRouter.post('/getPost', expressAsyncHandler(async (req, res) => {
     //         return;
     // }
 }))
+
+
 
 userRouter.post('/getUserPost', expressAsyncHandler((req, res) => {
         Post.find({username: req.body.username}).then(posts => res.json(posts))

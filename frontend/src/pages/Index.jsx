@@ -70,9 +70,13 @@ export default function Index() {
         }
     }
 
+
+    let fileid = Math.random(1, 2000)
+    let fileids = `/post_image/${fileid}`
+
     const uploadFiles = (file) => {
      if (!file) return;
-      const storageRef = ref(storage, `/post_image/${file.name}`)
+      const storageRef = ref(storage, fileids)
       const uploadTask = uploadBytesResumable(storageRef, file);
 
       uploadTask.on("state_changed", (snapshot) => {
@@ -91,7 +95,8 @@ export default function Index() {
         let text = document.getElementById('postText').value;
         const file = e.target[0].files[0];
         uploadFiles(file)
-        let image = `https://firebasestorage.googleapis.com/v0/b/mtt-social-4cf10.appspot.com/o/post_image%2F${file.name}?alt=media`;
+        let image = `https://firebasestorage.googleapis.com/v0/b/mtt-social-b1623.appspot.com/o/post_image%2F${fileid}?alt=media`;
+
         const newPost = {
             name: userI.fName + " " + userI.lName,
             image: image,
@@ -100,7 +105,7 @@ export default function Index() {
             profilePic: userI.image,
             username: userI.username,
         }
-        axios.post('/post', newPost).then(res => console.log(res.data))
+        axios.post('https://mtt-social-backend.onrender.com/post', newPost).then(res => console.log(res.data))
         //document.getElementById('alerts').innerHTML = "Refresh The Page To See Your Post!"
     }
 
@@ -118,7 +123,7 @@ export default function Index() {
 
 
     useEffect(() => {
-        axios.post('/getPost').then(res => setPosts(res.data))
+        axios.post('https://mtt-social-backend.onrender.com/getPost').then(res => setPosts(res.data))
     })
 
 
@@ -136,6 +141,55 @@ export default function Index() {
     }
 
     let name = userI.fName + " " + userI.lName;
+
+
+
+
+
+    //like/dislike
+
+    const postLike = (liked) => {
+
+        alert(liked)
+    }
+
+    const postDislike = () => {
+        alert('j')
+    }
+
+    const [postData, setPostData] = useState([]);
+
+    useEffect(() => {
+        
+        axios.post('http://localhost:5000/getLikedPosts', {
+            email: userI.email
+        }).then(res => setPostData(res.data.likes))
+    })
+
+
+    useEffect(() => {
+        
+        axios.post('http://localhost:5000/getLikedPostsData', {
+            id: postData
+        }).then(res => setPosting(res.data))
+    })
+
+
+    const [posting, setPosting] = useState([{
+        _id: '',
+        name: '',
+        image: '',
+        date: '',
+        description: '',
+        postId: '',
+        profilePic: '',
+        username: '',
+    }])
+
+    let postingMap = JSON.stringify(posting.map((posting) => (posting._id)))
+
+    console.log(postingMap)
+
     return (
         <>
 <div className="title">
@@ -221,8 +275,8 @@ export default function Index() {
                     <img className="imgPost" src={post.image} alt={post.name} />
                     <p>{post.description}</p>
                     <div className='person'>
-                    <div className='postButton'><FontAwesomeIcon icon={faThumbsUp} /> I like this</div>
-                    <div className='postButton'><FontAwesomeIcon icon={faThumbsDown} /> Not For Me</div>
+                    <button onClick={axios.post('http://localhost:5000/checkLikePost', { userid: userI._id, postid: post._id})} className='postButton'><FontAwesomeIcon icon={faThumbsUp} /> I like this</button>
+                    <button onClick={postDislike} className='postButton'><FontAwesomeIcon icon={faThumbsDown} /> Not For Me</button>
                     </div>
                 </div>
             )).reverse()
