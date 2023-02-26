@@ -1,6 +1,10 @@
 {
   "name": "frontend",
   "version": "0.1.0",
+<<<<<<< HEAD
+=======
+  "proxy": "https://mtt-social-backend.onrender.com/",
+>>>>>>> d5670d7a0cd4e3e6d62d3096457e3c0f2dfa6a93
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
