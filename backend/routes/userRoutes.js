@@ -236,7 +236,6 @@ userRouter.post('/friendUser', expressAsyncHandler(async (req, res) => {
     }
 }))
 
-
 userRouter.post('/likePost', (req, res) => {
 
     User.findByIdAndUpdate(req.body.userid, { $push: {likes: req.body.postid}}, (err, doc) => {

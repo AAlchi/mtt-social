@@ -11,7 +11,7 @@ export default function Like() {
     const { search } = useLocation();
     const redirectInUrl = new URLSearchParams(search).get('redirect');
     const redirect = redirectInUrl ? redirectInUrl : '/';
-
+    
     const home = () => {
         navigate('/');
     }
@@ -158,6 +158,7 @@ export default function Like() {
         <h2>Liked Posts</h2>
 
             {posts.map((post) => (
+                <div>
                 <div key={post._id} className='card'>
                     <div className='person'>
                         <Link to={`/${post.username}`} className='profile_img_name'>
@@ -172,8 +173,11 @@ export default function Like() {
                     <div className='person'>
                     <div onClick={() => alert()} className='postButton'><FontAwesomeIcon icon={faThumbsUp} /> Unlike</div>
                     <div className='postButton'><FontAwesomeIcon icon={faThumbsDown} /> Not For Me</div>
-                    
                     </div>
+                    <button onClick={() => window.scrollTo(0,0)}>Scroll To Top</button>
+
+                    </div>
+
                 </div>
             )).reverse()}    
             
