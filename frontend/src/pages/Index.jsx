@@ -161,7 +161,7 @@ export default function Index() {
 
     useEffect(() => {
         
-        axios.post('http://localhost:5000/getLikedPosts', {
+        axios.post('https://mtt-social-backend.onrender.com/getLikedPosts', {
             email: userI.email
         }).then(res => setPostData(res.data.likes))
     })
@@ -169,7 +169,7 @@ export default function Index() {
 
     useEffect(() => {
         
-        axios.post('http://localhost:5000/getLikedPostsData', {
+        axios.post('https://mtt-social-backend.onrender.com/getLikedPostsData', {
             id: postData
         }).then(res => setPosting(res.data))
     })
@@ -275,7 +275,7 @@ export default function Index() {
                     <img className="imgPost" src={post.image} alt={post.name} />
                     <p>{post.description}</p>
                     <div className='person'>
-                    <button onClick={axios.post('http://localhost:5000/checkLikePost', { userid: userI._id, postid: post._id})} className='postButton'><FontAwesomeIcon icon={faThumbsUp} /> I like this</button>
+                    <button onClick={axios.post('https://mtt-social-backend.onrender.com/checkLikePost', { userid: userI._id, postid: post._id})} className='postButton'><FontAwesomeIcon icon={faThumbsUp} /> I like this</button>
                     <button onClick={postDislike} className='postButton'><FontAwesomeIcon icon={faThumbsDown} /> Not For Me</button>
                     </div>
                 </div>

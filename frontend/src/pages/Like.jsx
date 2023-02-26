@@ -76,7 +76,7 @@ export default function Like() {
 
     useEffect(() => {
         
-        axios.post('http://localhost:5000/getLikedPosts', {
+        axios.post('https://mtt-social-backend.onrender.com/getLikedPosts', {
             email: userI.email
         }).then(res => setPostData(res.data.likes))
     })
@@ -84,7 +84,7 @@ export default function Like() {
 
     useEffect(() => {
         
-        axios.post('http://localhost:5000/getLikedPostsData', {
+        axios.post('https://mtt-social-backend.onrender.com/getLikedPostsData', {
             id: postData
         }).then(res => setPosts(res.data))
     })
