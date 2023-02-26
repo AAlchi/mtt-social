@@ -236,4 +236,23 @@ userRouter.post('/friendUser', expressAsyncHandler(async (req, res) => {
     }
 }))
 
+
+userRouter.post('/likePost', (req, res) => {
+
+    User.findByIdAndUpdate(req.body.userid, { $push: {likes: req.body.postid}}, (err, doc) => {
+      if (err) return console.log(err);
+      res.json(doc);
+    })
+  })
+  
+  userRouter.post('/getLikedPosts', (req, res) => {
+    User.findOne({email: req.body.email}).then(posts => res.json(posts))
+  })
+  
+  userRouter.post('/getLikedPostsData', (req, res) => {
+    Post.find({_id: req.body.id}).then(posts => res.json(posts))
+  })
+  
+
+
 module.exports = userRouter;
