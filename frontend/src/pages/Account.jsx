@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './style.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Axios from 'axios';
+import axios from 'axios';
 
 export default function Account() {
     const userI = JSON.parse(localStorage.getItem('USER'))
@@ -125,6 +126,38 @@ export default function Account() {
             phone.style.display = "flex";
         }
     }
+
+    const id = userI._id;
+    const [first, setFirst] = useState('');
+    const [last, setLast] = useState('');
+    const [usernames, setUsernames] = useState('');
+    const [emails, setEmails] = useState('');
+    const [dob, setDob] = useState('');
+    const [addressed, setAddressed] = useState('');
+    const [zipcodes, setZipcodes] = useState('');
+
+    let error = ''
+
+    const updateUser = () => {
+        if (first == '' || first == null || last == '' || last == null || usernames == '' || usernames == null || emails == '' || emails == null || dob == '' || dob == null || addressed == '' || addressed == null || zipcodes == '' || zipcodes == null) {
+            error = "You missed an input"
+        } else {
+            axios.post('http://localhost:5000/updateProfile', {
+                id,
+                first,
+                last,
+                usernames,
+                emails,
+                dob,
+                addressed,
+                zipcodes
+            }).then(res => console.log(res.data))
+            error = "Profile Updated. Log Back In."
+        }
+
+        document.getElementById('error').innerHTML = error;
+    }
+
     return (
         <div className='account'>
 <div className="title">
@@ -175,9 +208,27 @@ export default function Account() {
            
 
             <form onSubmit={updateProfile} className="account_main">
-            <h2>Comming Soon</h2>
+            <h2>Account</h2>
+            <br></br>
+            <label>First Name ({userI.fName})</label>
+            <input type="text" onChange={(e) => setFirst(e.target.value)}/>
+            <label>Last Name ({userI.lName})</label>
+            <input type="text" onChange={(e) => setLast(e.target.value)}/>
+            <label>Username ({userI.username})</label>
+            <input type="text" onChange={(e) => setUsernames(e.target.value)}/>
+            <label>Email ({userI.email})</label>
+            <input type="text" onChange={(e) => setEmails(e.target.value)}/>
+            <label>DOB (Y-D-M) ({userI.dob.slice(0, 10)})</label>
+            <input type="text" onChange={(e) => setDob(e.target.value)}/>
+            <label>Address ({userI.address})</label>
+            <input type="text" onChange={(e) => setAddressed(e.target.value)}/>
+            <label>ZipCode ({userI.zipCode})</label>
+            <input type="text" onChange={(e) => setZipcodes(e.target.value)}/>
+            <br></br>
+            <span id="error"></span>
+            <button type="submit" onClick={updateUser}>Update Account</button>
             </form>
-            
+
             
 
 

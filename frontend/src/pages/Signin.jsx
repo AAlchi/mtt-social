@@ -37,7 +37,7 @@ function Signin() {
       errors = "Empty Inputs";
     } else {
       try {
-        await Axios.post('https://mtt-social-backend.onrender.com/signin', {
+        await Axios.post('http://localhost:5000/signin', {
           email,
           password
         }).then(res => localStorage.setItem('USER', JSON.stringify(res.data)))

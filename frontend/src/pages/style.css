@@ -19,7 +19,7 @@ body {
 }
 
 .profile_Pic {
-    width: 50px;
+    width: 5l0px;
     height: 50px;
     border-radius: 50%;
     border: none;
@@ -49,10 +49,16 @@ body {
     overflow-x: hidden;
 }
 
+.author {
+    margin-left: 5px;
+}
+
 .sideBar > ul:hover {
     overflow-y: auto;
     overflow-x: hidden;
 }
+
+
 
 .sideBar > ul > li {
     font-size: 17px;
@@ -102,8 +108,8 @@ body {
 }
 
 .info > img {
-    width: 80%;
-    max-height: 40%;
+    min-height: 200px;
+    min-width: 200px;
     border-radius: 20px;
     border: 1px solid black;
     margin-top: 2%;
@@ -163,8 +169,18 @@ body {
 
 
 .imgPost {
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.image_post_card {
     width: 100%;
-    height: 350px;
+    height: 100%;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
 .person {
@@ -185,16 +201,16 @@ body {
 }
 
 .card {
-    width: 90%;
     height: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
     background-color: white;
-    padding: 5%;
+    padding: 10%;
     border-radius: 20px;
     max-width: 600px;
+    gap: 20px;
 }
 
 
@@ -220,6 +236,23 @@ body {
     align-items: center;
     justify-content: space-evenly;
     gap: 10px;
+}
+
+.profilePic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid black;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.profilePic > img {
+    min-width: 50px;
+    min-height: 50px;
 }
 
 
@@ -257,13 +290,22 @@ body {
     overflow: hidden;
 }
 
-.banner > img {
+.bannerImg {
     width: 150px;
     height: 150px;
-    border-radius: 50%;
-    border: none;
-    margin-top: 200px;
     border: 1px solid black;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 200px;
+    background-color: white;
+    overflow: hidden;
+}
+
+.bannerImg > img {
+    min-height: 150px;
+    min-width: 150px;
 }
 
 .banner {
@@ -379,4 +421,8 @@ body {
     .account_main {
         width: 100%;
     }
+}
+
+.white {
+    background-color: white;
 }

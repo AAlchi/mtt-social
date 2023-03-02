@@ -95,36 +95,6 @@ const generateToken = (user) => {
 
 
 
-userRouter.post('/updateuser', (req, res) => {
-    const id = req.body.id;
-    const fName = req.body.fName;
-    const lName = req.body.lName;
-    const email = req.body.email;
-    const username = req.body.username;
-    const address = req.body.address;
-    const zipCode = req.body.zipCode;
-    const dob = req.body.dob;
-    const image = req.body.image;
-
-    User.updateOne({_id:id}, {
-        $set:{
-            fName: fName,
-            lName: lName,
-            email: email,
-            username: username,
-            address: address,
-            zipCode: zipCode,
-            dob: dob,
-            image: image,
-        }
-    }, (err, doc) => {
-        if (err) {
-            return console.log(err)
-        } else {
-            res.json(doc)
-        }
-    })
-})
 
 
 
@@ -242,15 +212,73 @@ userRouter.post('/likePost', (req, res) => {
       if (err) return console.log(err);
       res.json(doc);
     })
+
   })
   
-  userRouter.post('/getLikedPosts', (req, res) => {
-    User.findOne({email: req.body.email}).then(posts => res.json(posts))
-  })
+  userRouter.post('/checkLikedPosts', expressAsyncHandler(async (req, res) => {
+
+    let user = await User.findOne({username: req.body.username});
+
+    if (user) {
+        let post = await Post.find({_id: user.likes}).then(post => res.json(post));
+    }
+  }))
+
+  userRouter.post('/updateProfile', expressAsyncHandler( async (req, res) => {
+
+    let id = req.body.id
+    let first = req.body.first
+    let last = req.body.last
+    let usernames = req.body.usernames
+    let emails = req.body.emails
+    let dob = req.body.dob
+    let addressed = req.body.addressed
+    let zipcodes = req.body.zipcodes
+
+    User.findByIdAndUpdate(req.body.id, {$set: {
+        _id: id,
+        fName: first,
+        lName: last,
+        email: emails,
+        username: usernames,
+        address: addressed,
+        zipCode: zipcodes, 
+        dob: dob,
+        
+    }}, (err, doc) => {
+      if (err) return console.log(err);
+      res.json(doc);
+    })
+   
+
+
+    res.send({
+        id,
+        first,
+        last,
+        usernames,
+        emails,
+        dob,
+        addressed,
+        zipcodes
+    })
+  }))
+
+
+  userRouter.post('/unlikePost', expressAsyncHandler(async (req, res) => {
+ 
+    await User.findByIdAndUpdate(req.body.userid, {$pull: {likes: req.body.postid}})
+
+    res.send({
+        user: req.body.userid,
+        post: req.body.postid
+    })
+
+    
+  }))
+
+
   
-  userRouter.post('/getLikedPostsData', (req, res) => {
-    Post.find({_id: req.body.id}).then(posts => res.json(posts))
-  })
   
 
 

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import './style.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { storage } from './firebase';
 import axios from 'axios';
+
 
 
 export default function Index() {
@@ -123,7 +124,7 @@ export default function Index() {
 
 
     useEffect(() => {
-        axios.post('https://mtt-social-backend.onrender.com/getPost').then(res => setPosts(res.data))
+        axios.post('http://localhost:5000/getPost').then(res => setPosts(res.data))
     })
 
 
@@ -145,7 +146,6 @@ export default function Index() {
 
 
 
-
     //like/dislike
 
     const postLike = (liked) => {
@@ -157,7 +157,18 @@ export default function Index() {
         alert('j')
     }
 
-    
+
+    const [id, setId] = useState([{
+        _id: '',
+        username: ''
+    }])
+
+
+    useEffect(() => {
+        axios.post('http://localhost:5000/checkLikedPosts', {username: userI.username}).then(res => localStorage.setItem('Likes', setId(res.data)))
+    })
+
+    let toggle = false
 
     return (
         <>
@@ -236,15 +247,18 @@ export default function Index() {
                 <div key={post._id} className='card'>
                     <div className='person'>
                         <Link to={`/${post.username}`} className='profile_img_name'>
-                        <img src={post.profilePic} alt={post.username} className="profile_Pic"/>
+                        <div className='profilePic'><img src={post.profilePic} alt={post.username}/></div>
                         <div className="author">From: {post.name}</div>
                         </Link>
                         <div className="date">On: {post.date}</div>
                     </div>
-                    <img className="imgPost" src={post.image} alt={post.name} />
+                    <div className='image_post_card'><img className="imgPost" src={post.image} alt={post.name} /></div>
                     <p>{post.description}</p>
+                    <h4>{post.like} likes</h4>
                     <div className='person'>
-                    <button onClick={() => axios.post('https://mtt-social-backend.onrender.com/likePost', { userid: userI._id, postid: post._id})} className='postButton'><FontAwesomeIcon icon={faThumbsUp} /> I like this</button>
+                        {id.filter(x => x._id === post._id) != '' ? (<button onClick={() => axios.post('http://localhost:5000/unlikePost', { userid: userI._id, postid: post._id}).then(res => console.log(res.data))} className='postButton white'><FontAwesomeIcon icon={faHeart}/> Unlike this</button>
+) : (<button onClick={() => axios.post('http://localhost:5000/likePost', { userid: userI._id, postid: post._id})} className='postButton'><FontAwesomeIcon icon={faThumbsUp} />I Like This</button>
+)}
                     <button onClick={postDislike} className='postButton'><FontAwesomeIcon icon={faThumbsDown} /> Not For Me</button>
                     </div>
                 </div>

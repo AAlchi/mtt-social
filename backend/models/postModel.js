@@ -9,7 +9,8 @@ const postSchema = new mongoose.Schema(
     postId: { type: String, required: true },
     profilePic: { type: String, required: true },
     username: { type: String, required: true },
-    like: { type: Number, required: true }
+    like: { type: Number, required: true },
+    dislike: { type: Number, required: true }
   },
   {
     timestamps: true,

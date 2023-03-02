@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './style.css';
-import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import axios, { all } from 'axios';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -83,7 +83,6 @@ export default function Like() {
 
 
     useEffect(() => {
-        
         axios.post('https://mtt-social-backend.onrender.com/getLikedPostsData', {
             id: postData
         }).then(res => setPosts(res.data))
@@ -158,27 +157,25 @@ export default function Like() {
         <h2>Liked Posts</h2>
 
             {posts.map((post) => (
-                <div>
                 <div key={post._id} className='card'>
                     <div className='person'>
                         <Link to={`/${post.username}`} className='profile_img_name'>
-                        <img src={post.profilePic} alt={post.username} className="profile_Pic"/>
+                        <div className='profilePic'><img src={post.profilePic} alt={post.username}/></div>
                         <div className="author">From: {post.name}</div>
                         </Link>
                         <div className="date">On: {post.date}</div>
                     </div>
-                    <img className="imgPost" src={post.image} alt={post.name} />
+                    <div className='image_post_card'><img className="imgPost" src={post.image} alt={post.name} /></div>
                     <p>{post.description}</p>
                     <h6>{post.like} likes</h6>
                     <div className='person'>
-                    <div onClick={() => alert()} className='postButton'><FontAwesomeIcon icon={faThumbsUp} /> Unlike</div>
+                    <button onClick={() => axios.post('http://localhost:5000/unlikePost', { userid: userI._id, postid: post._id}).then(res => console.log(res.data))} className='postButton white'><FontAwesomeIcon icon={faHeart}/>Unlike this</button>
                     <div className='postButton'><FontAwesomeIcon icon={faThumbsDown} /> Not For Me</div>
                     </div>
                     <button onClick={() => window.scrollTo(0,0)}>Scroll To Top</button>
 
                     </div>
 
-                </div>
             )).reverse()}    
             
            

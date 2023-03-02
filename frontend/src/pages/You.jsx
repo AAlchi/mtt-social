@@ -190,7 +190,7 @@ export default function You() {
 
           <div className="you">
                         <div className="banner">
-                            <img src={image} alt={fName} /></div>
+                            <div className='bannerImg'><img src={image} alt={fName} /></div></div>
                 <div className="you_content">
                 <div>
                 <div className="you_name">Username: {username}</div> 
@@ -210,12 +210,12 @@ export default function You() {
                 <div key={post._id} className='card'>
                     <div className='person'>
                         <Link to={`/${post.username}`} className='profile_img_name'>
-                        <img src={post.profilePic} alt={post.username} className="profile_Pic"/>
+                        <div className='profilePic'><img src={post.profilePic} alt={post.username}/></div>
                         <div className="author">From: {post.name}</div>
                         </Link>
                         <div className="date">On: {post.date}</div>
                     </div>
-                    <img className="imgPost" src={post.image} alt={post.name} />
+                    <div className='image_post_card'><img className="imgPost" src={post.image} alt={post.name} /></div>
                     <p>{post.description}</p>
                     <h6>{post.like} likes</h6>
                     <div className='person'>

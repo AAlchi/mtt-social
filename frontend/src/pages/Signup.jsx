@@ -87,7 +87,7 @@ function Signup() {
         password: bcrypt.hashSync(password),
         image: image,
       }
-      axios.post('https://mtt-social-backend.onrender.com/create', newUser).then(res => JSON.stringify(localStorage.setItem('USER_EXISTS', res.data)))
+      axios.post('http:/localhost:5000/create', newUser).then(res => JSON.stringify(localStorage.setItem('USER_EXISTS', res.data)))
 
 
       navigate('/signin')
