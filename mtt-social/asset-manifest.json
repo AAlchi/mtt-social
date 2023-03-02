@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.5b43ca19.css",
-    "main.js": "/static/js/main.96aedd53.js",
+    "main.css": "/static/css/main.d2a0c915.css",
+    "main.js": "/static/js/main.1c06b6e9.js",
     "static/media/sign_in_up.jpg": "/static/media/sign_in_up.61cfb731d8478f57715a.jpg",
     "static/media/farmer.jpg": "/static/media/farmer.298eca2671b384fc6b75.jpg",
     "index.html": "/index.html",
-    "main.5b43ca19.css.map": "/static/css/main.5b43ca19.css.map",
-    "main.96aedd53.js.map": "/static/js/main.96aedd53.js.map"
+    "main.d2a0c915.css.map": "/static/css/main.d2a0c915.css.map",
+    "main.1c06b6e9.js.map": "/static/js/main.1c06b6e9.js.map"
   },
   "entrypoints": [
-    "static/css/main.5b43ca19.css",
-    "static/js/main.96aedd53.js"
+    "static/css/main.d2a0c915.css",
+    "static/js/main.1c06b6e9.js"
   ]
 }

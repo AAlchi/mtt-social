@@ -214,6 +214,15 @@ userRouter.post('/likePost', (req, res) => {
     })
 
   })
+
+    userRouter.post('/getLikedPosts', (req, res) => {
+    User.findOne({email: req.body.email}).then(posts => res.json(posts))
+  })
+  
+  userRouter.post('/getLikedPostsData', (req, res) => {
+    Post.find({_id: req.body.id}).then(posts => res.json(posts))
+  })
+  
   
   userRouter.post('/checkLikedPosts', expressAsyncHandler(async (req, res) => {
 

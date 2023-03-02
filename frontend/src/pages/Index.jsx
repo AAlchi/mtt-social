@@ -124,7 +124,7 @@ export default function Index() {
 
 
     useEffect(() => {
-        axios.post('http://localhost:5000/getPost').then(res => setPosts(res.data))
+        axios.post('https://mtt-social-backend.onrender.com/getPost').then(res => setPosts(res.data))
     })
 
 
@@ -165,7 +165,7 @@ export default function Index() {
 
 
     useEffect(() => {
-        axios.post('http://localhost:5000/checkLikedPosts', {username: userI.username}).then(res => localStorage.setItem('Likes', setId(res.data)))
+        axios.post('https://mtt-social-backend.onrender.com/checkLikedPosts', {username: userI.username}).then(res => localStorage.setItem('Likes', setId(res.data)))
     })
 
     let toggle = false
@@ -256,8 +256,8 @@ export default function Index() {
                     <p>{post.description}</p>
                     <h4>{post.like} likes</h4>
                     <div className='person'>
-                        {id.filter(x => x._id === post._id) != '' ? (<button onClick={() => axios.post('http://localhost:5000/unlikePost', { userid: userI._id, postid: post._id}).then(res => console.log(res.data))} className='postButton white'><FontAwesomeIcon icon={faHeart}/> Unlike this</button>
-) : (<button onClick={() => axios.post('http://localhost:5000/likePost', { userid: userI._id, postid: post._id})} className='postButton'><FontAwesomeIcon icon={faThumbsUp} />I Like This</button>
+                        {id.filter(x => x._id === post._id) != '' ? (<button onClick={() => axios.post('https://mtt-social-backend.onrender.com/unlikePost', { userid: userI._id, postid: post._id}).then(res => console.log(res.data))} className='postButton white'><FontAwesomeIcon icon={faHeart}/> Unlike this</button>
+) : (<button onClick={() => axios.post('https://mtt-social-backend.onrender.com/likePost', { userid: userI._id, postid: post._id})} className='postButton'><FontAwesomeIcon icon={faThumbsUp} />I Like This</button>
 )}
                     <button onClick={postDislike} className='postButton'><FontAwesomeIcon icon={faThumbsDown} /> Not For Me</button>
                     </div>

@@ -142,7 +142,7 @@ export default function Account() {
         if (first == '' || first == null || last == '' || last == null || usernames == '' || usernames == null || emails == '' || emails == null || dob == '' || dob == null || addressed == '' || addressed == null || zipcodes == '' || zipcodes == null) {
             error = "You missed an input"
         } else {
-            axios.post('http://localhost:5000/updateProfile', {
+            axios.post('https://mtt-social-backend.onrender.com/updateProfile', {
                 id,
                 first,
                 last,

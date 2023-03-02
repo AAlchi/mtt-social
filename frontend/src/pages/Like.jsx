@@ -169,7 +169,7 @@ export default function Like() {
                     <p>{post.description}</p>
                     <h6>{post.like} likes</h6>
                     <div className='person'>
-                    <button onClick={() => axios.post('http://localhost:5000/unlikePost', { userid: userI._id, postid: post._id}).then(res => console.log(res.data))} className='postButton white'><FontAwesomeIcon icon={faHeart}/>Unlike this</button>
+                    <button onClick={() => axios.post('https://mtt-social-backend.onrender.com/unlikePost', { userid: userI._id, postid: post._id}).then(res => console.log(res.data))} className='postButton white'><FontAwesomeIcon icon={faHeart}/>Unlike this</button>
                     <div className='postButton'><FontAwesomeIcon icon={faThumbsDown} /> Not For Me</div>
                     </div>
                     <button onClick={() => window.scrollTo(0,0)}>Scroll To Top</button>
