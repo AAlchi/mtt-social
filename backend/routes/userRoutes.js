@@ -233,6 +233,22 @@ userRouter.post('/likePost', (req, res) => {
     }
   }))
 
+  
+
+  userRouter.post('/unlikePost', expressAsyncHandler(async (req, res) => {
+ 
+    await User.findByIdAndUpdate(req.body.userid, {$pull: {likes: req.body.postid}})
+
+    res.send({
+        user: req.body.userid,
+        post: req.body.postid
+    })
+
+    
+    
+  }))
+
+
   userRouter.post('/updateProfile', expressAsyncHandler( async (req, res) => {
 
     let id = req.body.id
@@ -272,20 +288,6 @@ userRouter.post('/likePost', (req, res) => {
         zipcodes
     })
   }))
-
-
-  userRouter.post('/unlikePost', expressAsyncHandler(async (req, res) => {
- 
-    await User.findByIdAndUpdate(req.body.userid, {$pull: {likes: req.body.postid}})
-
-    res.send({
-        user: req.body.userid,
-        post: req.body.postid
-    })
-
-    
-  }))
-
 
   
   
