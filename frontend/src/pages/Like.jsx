@@ -89,9 +89,9 @@ export default function Like() {
     })
 
 
-
-  
-    
+    const postUnlike = (postid) => {
+        axios.post('https://mtt-social-backend.onrender.com/unlikePost', { userid: userI._id, postid: postid}).finally(document.getElementById('loading').innerHTML = "Loading...")
+    }
    const phone = () => {
         let phone = document.getElementById('sidebar');
 
@@ -169,7 +169,7 @@ export default function Like() {
                     <p>{post.description}</p>
                     <h6>{post.like} likes</h6>
                     <div className='person'>
-                    <button onClick={() => axios.post('https://mtt-social-backend.onrender.com/unlikePost', { userid: userI._id, postid: post._id}).then(res => console.log(res.data))} className='postButton white'><FontAwesomeIcon icon={faHeart}/>Unlike this</button>
+                    <button onClick={() => postUnlike(post._id)} className='postButton white'><FontAwesomeIcon icon={faHeart}/><span id="loading">Unlike This</span></button>
                     <div className='postButton'><FontAwesomeIcon icon={faThumbsDown} /> Not For Me</div>
                     </div>
                     <button onClick={() => window.scrollTo(0,0)}>Scroll To Top</button>

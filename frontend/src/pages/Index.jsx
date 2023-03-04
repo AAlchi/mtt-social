@@ -106,7 +106,7 @@ export default function Index() {
             profilePic: userI.image,
             username: userI.username,
         }
-        axios.post('https://mtt-social-backend.onrender.com/post', newPost).then(res => console.log(res.data))
+        axios.post('http://localhost:5000/post', newPost).then(res => console.log(res.data))
         //document.getElementById('alerts').innerHTML = "Refresh The Page To See Your Post!"
     }
 
@@ -148,11 +148,6 @@ export default function Index() {
 
     //like/dislike
 
-    const postLike = (liked) => {
-
-        alert(liked)
-    }
-
     const postDislike = () => {
         alert('j')
     }
@@ -164,12 +159,29 @@ export default function Index() {
     }])
 
 
+    const postUnlike = (postid) => {
+        axios.post('https://mtt-social-backend.onrender.com/unlikePost', { userid: userI._id, postid: postid}).finally(document.getElementById('loading').innerHTML = "Loading...")
+    }
+
+    const postLike = (postid) => {
+        axios.post('https://mtt-social-backend.onrender.com/likePost', { userid: userI._id, postid: postid}).finally(document.getElementById('loading').innerHTML = "Loading...")
+    }
+
+
     useEffect(() => {
-        axios.post('https://mtt-social-backend.onrender.com/checkLikedPosts', {username: userI.username}).then(res => localStorage.setItem('Likes', setId(res.data)))
+        axios.post('https://mtt-social-backend.onrender.com/checkLikedPosts', {username: userI.username}).then(res => setId(res.data))
     })
 
     let toggle = false
 
+    let [postingid, setPostingId] = useState('');
+
+    const card = (postid) => {
+        document.getElementById('postingDone').style.display = "flex"
+        setPostingId(postid)
+        window.scrollTo(0, 0)
+    }
+     
     return (
         <>
 <div className="title">
@@ -244,7 +256,7 @@ export default function Index() {
             <div className='posts'>
                         {
                             posts.map((post) => (
-                <div key={post._id} className='card'>
+                <div onClick={() => card(post._id)} key={post._id} className='card'>
                     <div className='person'>
                         <Link to={`/${post.username}`} className='profile_img_name'>
                         <div className='profilePic'><img src={post.profilePic} alt={post.username}/></div>
@@ -256,19 +268,28 @@ export default function Index() {
                     <p>{post.description}</p>
                     <h4>{post.like} likes</h4>
                     <div className='person'>
-                        {id.filter(x => x._id === post._id) != '' ? (<button onClick={() => axios.post('https://mtt-social-backend.onrender.com/unlikePost', { userid: userI._id, postid: post._id}).then(res => console.log(res.data))} className='postButton white'><FontAwesomeIcon icon={faHeart}/> Unlike this</button>
-) : (<button onClick={() => axios.post('https://mtt-social-backend.onrender.com/likePost', { userid: userI._id, postid: post._id})} className='postButton'><FontAwesomeIcon icon={faThumbsUp} />I Like This</button>
+                        {id.filter(x => x._id === post._id) != '' ? (<button onClick={() => postUnlike(post._id)} className='postButton white'><FontAwesomeIcon icon={faHeart}/><span id="loading">Unlike This</span></button>
+) : (<button onClick={() => postLike(post._id)} className='postButton'><FontAwesomeIcon icon={faThumbsUp} /><span id="loading">Like This</span></button>
 )}
                     <button onClick={postDislike} className='postButton'><FontAwesomeIcon icon={faThumbsDown} /> Not For Me</button>
                     </div>
                 </div>
             )).reverse()
-                        }    
-            
+                        }   
+
+
+             
            
             
             </div>
                 </div>
+
+                {posts.filter(x => x._id === postingid).map((post) => (
+                <div id='postingDone'>
+                    {post._id}
+                </div>
+            )).reverse()
+                        }   
          
                 {width > 550 ? (
 
